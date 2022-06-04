@@ -9,20 +9,20 @@ JailStands = {"prop_news_disp_03a"}
 
 RobberyStands = {"prop_news_disp_05a"}
 
+-- Method for adding a newspaper to specific prop(s)
 function AddItemToNewsStand(storyType, storyLabel, storyIcon, stands)
-    exports['qb-target']:AddTargetModel(stands, { -- This defines the models, can be a string or a table
-        options = { -- This is your options table, in this table all the options will be specified for the target to accept
-        { -- This is the first table with options, you can make as many options inside the options table as you want, -- This is the icon that will display next to this trigger option
-            label = storyLabel, -- This is the label of this option which you would be able to click on to trigger everything, this has to be a string
-            icon = storyIcon, -- This is the icon of the target itself, the icon changes to this when it turns blue on this specific option, this is OPTIONAL
-            action = function(entity) -- This is the action it has to perform, this REPLACES the event and this is OPTIONAL
+    exports['qb-target']:AddTargetModel(stands, {
+        options = {
+        { 
+            label = storyLabel,
+            icon = storyIcon,
+            action = function(entity)
 
                 if IsPedAPlayer(entity) then
                     return false
-                end -- This will return false if the entity interacted with is a player and otherwise returns true
+                end
 
                 if storyType then
-
                     OpenNewspaper(storyType)
                 end
 
@@ -55,6 +55,8 @@ function OpenNewspaper(storyType)
 
     end, storyType)
 end
+
+-- Publish a story manually
 
 RegisterNUICallback('publishStory', function(data)
     TriggerServerEvent('newsstands:server:publishStory', data)
