@@ -1,6 +1,6 @@
 # qb-newsstands
 
-## THIS IS STILL IN DEVELOPMENT AND NOT STABLE YET
+**THIS IS STILL IN DEVELOPMENT AND NOT STABLE YET**
 
 This standalone resource will add a newspaper functionality to the newsstands properties in FiveM. 
 
