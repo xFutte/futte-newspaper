@@ -17,6 +17,9 @@ let storyTypeHeader;
 // Story from the backend
 let payload;
 
+const headerMinLength = 10;
+const bodyMinLength = 10;
+
 if (typeof window !== 'undefined') {
 	window.addEventListener('message', (event) => {
 		payload = event.data.story;
@@ -78,6 +81,10 @@ if (typeof window !== 'undefined') {
 	});
 }
 
+function determinePrisonTime(time) {
+	return time > 1 ? time + 's' : '';
+}
+
 function setupStories(storyType) {
 	news.classList.remove('hidden');
 
@@ -87,42 +94,16 @@ function setupStories(storyType) {
 
 	if (storyType === 'news') {
 		storyTypeHeader.innerHTML = 'Latest news';
-
-		payload.forEach((story) => {
-			const storyElement = document.createElement('div');
-
-			storyElement.innerHTML = `
-			<div class="news-story">
-				<h3>${story.header}</h3>
-				<p>
-					${
-						story.jailed_time
-							? `<strong>${
-									story.jailed_player
-							  }</strong> has been sentenced for <strong>${
-									story.jailed_time
-							  } month${
-									story.jailed_time > 1 ? 's' : ''
-							  }</strong>!`
-							: story.body
-					}
-				</p>
-			</div>
-
-			<hr />
-			`;
-
-			storiesContainer.appendChild(storyElement);
-		});
 	}
 
 	if (storyType === 'jailtime') {
 		storyTypeHeader.innerHTML = 'Jail sentences';
+	}
 
-		payload.forEach((story) => {
-			const storyElement = document.createElement('div');
+	payload.forEach((story) => {
+		const storyElement = document.createElement('div');
 
-			storyElement.innerHTML = `
+		storyElement.innerHTML = `
 			<div class="news-story">
 				<h3>${story.header}</h3>
 				<p>
@@ -132,57 +113,9 @@ function setupStories(storyType) {
 									story.jailed_player
 							  }</strong> has been sentenced for <strong>${
 									story.jailed_time
-							  } month${
-									story.jailed_time > 1 ? 's' : ''
-							  }</strong>!`
-							: story.body
-					}
-				</p>
-			</div>
-
-			<hr />
-			`;
-
-			storiesContainer.appendChild(storyElement);
-		});
-	}
-
-	if (storyType === 'robberies') {
-		storyTypeHeader.innerHTML = 'Latest robberies'
-
-		payload.forEach((story) => {
-			const storyElement = document.createElement('div');
-
-			storyElement.innerHTML = `
-			<div class="news-story">
-				<h3>${story.header}</h3>
-				<p>
-					${story.body}	
-				</p>
-			</div>
-
-			<hr />
-			`;
-
-			storiesContainer.appendChild(storyElement);
-		});
-	}
-		payload.forEach((story) => {
-			const storyElement = document.createElement('div');
-
-			storyElement.innerHTML = `
-			<div class="news-story">
-				<h3>${story.header}</h3>
-				<p>
-					${
-						story.jailed_time
-							? `<strong>${
-									story.jailed_player
-							  }</strong> has been sentenced for <strong>${
+							  } month${determinePrisonTime(
 									story.jailed_time
-							  } month${
-									story.jailed_time > 1 ? 's' : ''
-							  }</strong>!`
+							  )}</strong>!`
 							: story.body
 					}
 				</p>
@@ -191,8 +124,8 @@ function setupStories(storyType) {
 			<hr />
 			`;
 
-			storiesContainer.appendChild(storyElement);
-		});
+		storiesContainer.appendChild(storyElement);
+	});
 }
 
 /** Hide newspaper */
