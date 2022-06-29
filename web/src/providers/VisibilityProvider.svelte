@@ -28,8 +28,15 @@
   });
 </script>
 
-<main>
+<main class="visibility">
   {#if isVisible}
     <slot />
   {/if}
 </main>
+
+<style>
+  .visibility {
+    height: 100%;
+    border: 1px solid blue;
+  }
+</style>

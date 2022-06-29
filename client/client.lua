@@ -1,3 +1,4 @@
+-- SVELTE UTILITY CLASSES
 RegisterCommand('svelte:show', function()
     SendNUIMessage({
         action = 'setVisible',
@@ -20,6 +21,7 @@ RegisterNUICallback('hideUI', function(_, cb)
     SetNuiFocus(false, false)
 end)
 
+-- CUSTOM CODE
 local QBCore = exports['qb-core']:GetCoreObject()
 local story = {}
 
