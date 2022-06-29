@@ -5,7 +5,8 @@
     "strict": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
   },
 
   "include": ["src/**/*"],
