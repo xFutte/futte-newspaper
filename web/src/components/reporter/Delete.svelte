@@ -114,4 +114,8 @@
     .container {
         width: 100%;
     }
+
+	:global(.s-tbl > table) {
+		width: 100%;
+	}
 </style>

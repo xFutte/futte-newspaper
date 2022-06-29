@@ -12,6 +12,10 @@
 	]);
 </script>
 
+<svelte:head>
+	<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+</svelte:head>
+
 <main class="container">
 	<VisibilityProvider>
 		<MaterialApp>
@@ -31,9 +35,10 @@
 		flex-direction: column;
 		border-radius: 5px;
 		width: 1600px;
-		height: 1000px;
 		font-size: 1.5vh;
 		color: white;
 		user-select: none;
+		height: 1005px;
+		min-height: 1005px;
 	}
 </style>

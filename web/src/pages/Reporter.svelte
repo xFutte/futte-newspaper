@@ -7,7 +7,7 @@
 </script>
 
 <div class="pa-4">
-	<h4>Newspaper handling</h4>
+	<h4>Dashboard for reports</h4>
 
 	<div class="mt-2">
 		<ExpansionPanels multiple>

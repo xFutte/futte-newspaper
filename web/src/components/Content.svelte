@@ -12,7 +12,7 @@
 
 	import { mdiStar } from '@mdi/js';
 
-	let value = 3;
+	let value = 0;
 	let isReporter = true;
 </script>
 
@@ -22,8 +22,8 @@
 		<Tabs class="green-text" bind:value fixedTabs>
 			<div slot="tabs">
 				<Tab>Newspaper</Tab>
-				<Tab>Patch notes</Tab>
-				<Tab>Prison sentences</Tab>
+				<!-- <Tab>Prison sentences</Tab>
+				<Tab>City updates</Tab> -->
 				{#if isReporter == true}<Tab
 						><Icon path={mdiStar} /><span class="ml-2">Reporter actions</span></Tab
 					>{/if}
@@ -36,7 +36,7 @@
 	<WindowItem>
 		<News />
 	</WindowItem>
-	<WindowItem>
+	<!-- <WindowItem>
 		<h4>Item 2</h4>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -57,7 +57,7 @@
 			interdum elit imperdiet ut. Suspendisse et sagittis erat, euismod
 			vulputate enim. Etiam feugiat sit amet justo vitae commodo.
 		</p>
-	</WindowItem>
+	</WindowItem> -->
 	<WindowItem>
 		<Reporter />
 	</WindowItem>
