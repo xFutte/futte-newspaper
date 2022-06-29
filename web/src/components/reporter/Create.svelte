@@ -1,10 +1,8 @@
 <script lang="ts">
 	import moment from 'moment';
 
-	import { TextField, Textarea, Button } from 'svelte-materialify';
+	import { TextField, Button } from 'svelte-materialify';
 	import { quill } from 'svelte-quill';
-	import { fetchNui } from '../../utils/fetchNui';
-	import { useNuiEvent } from '../../utils/useNuiEvent';
 
 	const options = {
 		modules: {
@@ -30,7 +28,7 @@
 			date: new Date().toUTCString(),
 		};
 
-		fetchNui('publishStory', story);
+		// fetchNui('publishStory', story);
 	}
 
 	interface Story {
