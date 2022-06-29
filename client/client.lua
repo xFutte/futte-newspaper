@@ -1,3 +1,25 @@
+RegisterCommand('svelte:show', function()
+    SendNUIMessage({
+        action = 'setVisible',
+        data = true
+    })
+    SetNuiFocus(true, true)
+end)
+
+RegisterNUICallback('getClientData', function(_, cb)
+    local playerCoords = GetEntityCoords(PlayerPedId())
+    cb({
+        x = math.ceil(playerCoords.x),
+        y = math.ceil(playerCoords.y),
+        z = math.ceil(playerCoords.z)
+    })
+end)
+
+RegisterNUICallback('hideUI', function(_, cb)
+    cb({})
+    SetNuiFocus(false, false)
+end)
+
 local QBCore = exports['qb-core']:GetCoreObject()
 local story = {}
 
@@ -8,10 +30,9 @@ local NewsStands = {"prop_news_disp_02a_s", "prop_news_disp_02c", "prop_news_dis
 local JailStands = {"prop_news_disp_03a"}
 
 local function AddItemToNewsStand(storyType, paper, paperIcon, stands)
-    exports['qb-target']:AddTargetModel(stands, { 
-        options = { 
-        { 
-            label = paper, 
+    exports['qb-target']:AddTargetModel(stands, {
+        options = {{
+            label = paper,
             icon = paperIcon,
             action = function(entity)
 
