@@ -1,10 +1,11 @@
-CREATE TABLE IF NOT EXISTS `newsstands` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `story_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `header` varchar(5000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `body` varchar(5000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `datetime` text,
-  `jailed_player` varchar(50) DEFAULT NULL,
-  `jailed_time` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `newsstands` (
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`story_type` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8_general_ci',
+	`header` VARCHAR(5000) NOT NULL DEFAULT '' COLLATE 'utf8_general_ci',
+	`body` VARCHAR(5000) NOT NULL DEFAULT '' COLLATE 'utf8_general_ci',
+	`date` VARCHAR(50) NULL DEFAULT '' COLLATE 'utf8_general_ci',
+	`jailed_player` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`jailed_time` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`image` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	PRIMARY KEY (`id`) USING BTREE
+)
