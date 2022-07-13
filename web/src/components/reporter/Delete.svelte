@@ -16,6 +16,7 @@
 	} from 'svelte-materialify';
 
 	import { mdiDeleteForever } from '@mdi/js';
+	import { fetchNui } from '../../utils/fetchNui';
 
 	interface Story {
 		id: number;
@@ -26,7 +27,10 @@
 		date: string;
 	}
 
-	let stories: Array<Story> = [];
+	// Stories will be provided by the content component
+	export let stories;
+
+	let payload: object = {}
 	let active = false;
 	let deleteId: number | null = null;
 
@@ -39,32 +43,19 @@
 		active = false;
 
 		if (remove === false) {
-			console.log('Not removing');
 			return;
 		}
 
-		console.log('Remove story with id ' + deleteId);
-		deleteId = null;
-	}
+		// Made to an object to be more flexible for further implementation if desired
+		payload = {
+			id: deleteId,
+		};
 
-	stories = [
-		{
-			id: 1,
-			type: 'news',
-			image: 'https://i.ytimg.com/vi/VDcldO8jGTI/maxresdefault.jpg',
-			header: 'Story 1',
-			body: '<p>boasdasddy</p>',
-			date: moment(new Date()).format('LLL'),
-		},
-		{
-			id: 2,
-			type: 'news',
-			image: 'https://ichef.bbci.co.uk/news/999/cpsprodpb/15951/production/_117310488_16.jpg',
-			header: 'Story 2',
-			body: '<p>boasdasddy</p>',
-			date: moment(new Date()).format('LLL'),
-		},
-	];
+		fetchNui('deleteStory', payload);
+		
+		deleteId = null;
+		payload = {}
+	}
 </script>
 
 <div class="container pt-4">
@@ -111,9 +102,9 @@
 </Dialog>
 
 <style>
-    .container {
-        width: 100%;
-    }
+	.container {
+		width: 100%;
+	}
 
 	:global(.s-tbl > table) {
 		width: 100%;

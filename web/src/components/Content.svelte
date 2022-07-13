@@ -65,6 +65,6 @@ import type { Story } from '../interfaces/story';
 		</p>
 	</WindowItem> -->
 	<WindowItem>
-		<Reporter />
+		<Reporter stories={stories}/>
 	</WindowItem>
 </Window>

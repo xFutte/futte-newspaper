@@ -74,9 +74,15 @@ end)
 RegisterNUICallback('publishStory', function(data)
     TriggerServerEvent('newsstands:server:publishStory', data)
 
-    SetNuiFocus(false, false)
-
     TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+end)
+
+RegisterNUICallback('deleteStory', function(data)
+    for k, v in pairs(data) do
+    print(k, v)
+end
+
+    TriggerServerEvent('newsstands:server:deleteStory', data)
 end)
 
 RegisterNetEvent('newsstands:client:writestory', function()

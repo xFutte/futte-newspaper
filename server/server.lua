@@ -1,25 +1,9 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
-local nilStory = {
-    [1] = {
-        id = 0,
-        type = 'news',
-        header = 'Empty paper',
-        body = 'No news available today! Check again tomorrow!',
-        datetime = os.date(),
-        jailed_player = '',
-        jailed_time = 1
-    }
-}
-
 QBCore.Functions.CreateCallback('newsstands:server:getStories', function(source, cb, storyType)
     local data = exports.oxmysql:executeSync('SELECT * FROM newsstands WHERE story_type = ? ORDER BY id DESC LIMIT 7',
         {storyType})
-    if data and data[1] then
-        cb(data)
-    else
-        cb(nilStory)
-    end
+    cb(data)
 end)
 
 -- Handle getting papers from stands
@@ -51,33 +35,56 @@ RegisterNetEvent('newsstands:buy', function(type)
     end
 end)
 
--- Publish stories
-QBCore.Commands.Add('newstory', 'Write a new story for the newspaper (God tier players)', {}, false, function(source)
-    TriggerClientEvent('newsstands:client:writestory', source)
-end, 'god')
-
 RegisterNetEvent('newsstands:server:publishStory', function(data)
-    -- Security checks
     local Player = QBCore.Functions.GetPlayer(source)
     local src = source
+    local knownPlayers = {}
+
+    knownPlayers[source] = true;
 
     if Player.PlayerData.job['name'] == 'reporter' then
-        local player = GetPlayerPed(src)
-        local coords1 = GetEntityCoords(player)
-        local coords2 = vector3(442.09, -981.96, 30.69) -- Place the reporter need to be for publishing a new story
-        local distance = #(coords1 - coords2)
+        if not knownPlayers[source] then
+            print('Hm?')
+            -- Yeet the player 
+            knownPlayers[source] = nil;
 
-        if distance < Config.minimum_distance then
-            exports.oxmysql:insert('INSERT INTO newsstands (story_type, header, body) VALUES (?, ?, ?)',
-                {'news', data.header, data.body})
+            return
+        else
+            exports.oxmysql:insert(
+                'INSERT INTO newsstands (story_type, title, body, date, image) VALUES (?, ?, ?, ?, ?)',
+                {'news', data.title, data.body, data.date, data.image})
 
             TriggerClientEvent('QBCore:Notify', src, 'Story has been published!', 'success')
-
-            return true
-        else
-            TriggerClientEvent('QBCore:Notify', src, 'You are about to be banned - bye bye', 'error')
-
-            return false
         end
+    else
+        TriggerClientEvent('QBCore:Notify', src, 'You need to be a reporter to publish a story', 'success')
     end
+
+    knownPlayers[source] = nil;
+end)
+
+RegisterNetEvent('newsstands:server:deleteStory', function(data)
+    local Player = QBCore.Functions.GetPlayer(source)
+    local src = source
+    local knownPlayers = {}
+
+    knownPlayers[source] = true;
+
+    if Player.PlayerData.job['name'] == 'reporter' then
+        if not knownPlayers[source] then
+            print('Hm?')
+            -- Yeet the player 
+            knownPlayers[source] = nil;
+
+            return
+        else
+            exports.oxmysql:execute('DELETE FROM newsstands WHERE id = ?', {data.id})
+
+            TriggerClientEvent('QBCore:Notify', src, 'Story have been deleted', 'success')
+        end
+    else
+        TriggerClientEvent('QBCore:Notify', src, 'Not possible to delete story', 'success')
+    end
+
+    knownPlayers[source] = nil;
 end)

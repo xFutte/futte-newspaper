@@ -2,7 +2,7 @@ export interface Story {
 	id: number;
 	type: string;
 	image: string;
-	header: string;
+	title: string;
 	body: string;
 	date: string;
 }

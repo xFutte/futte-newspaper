@@ -12,6 +12,7 @@
 		CardActions,
 	} from 'svelte-materialify';
 	import { quill } from 'svelte-quill';
+import { fetchNui } from '../../utils/fetchNui';
 
 	const options = {
 		modules: {
@@ -34,10 +35,10 @@
 			image: image?.value,
 			title: title ? title.value : '',
 			body: content.html,
-			date: new Date().toUTCString(),
+			date: moment(new Date()).format('MMMM Do YYYY')
 		};
 
-		// fetchNui('publishStory', story);
+		fetchNui('publishStory', story);
 	}
 
 	let active = false;
@@ -71,14 +72,13 @@
 <div class="pt-4 container">
 	<TextField id="title" outlined>Title</TextField>
 	<TextField id="image" outlined>Image URL</TextField>
-	<Textarea id="body" outlined>Body</Textarea>
 	<div
 		class="editor mb-2"
 		use:quill={options}
 		on:text-change={(e) => (content = e.detail)}
 	/>
 	<Button on:click={publishArticle} class="green white-text">Publish</Button>
-	<Button disabled on:click={preview}>Preview (In development)</Button>
+	<Button disabled on:click={preview}>Preview (Coming soon)</Button>
 </div>
 
 <!-- <Dialog persistent bind:active>
