@@ -13,31 +13,17 @@
 	let image: HTMLImageElement | null;
 	let selectedStory: number = 0;
 
-	// Provide a story if no stories have been received.
-	if (stories.length === 0) {
-		stories.push({
-			header: 'No news',
-			image: imagePlaceholder,
-			date: moment().format('LTT'),
-			id: 0,
-			body: 'No news have been written - write the first!',
-			type: 'news',
-		});
-	}
-
 	function updateMainStory(id: number): void {
 		selectedStory = id;
 
 		// We need to do insert the text into the DOM this way due to how we get everything from the backend
-		if (body && image) {
+		if (body) {
 			body.innerHTML = stories[selectedStory].body;
-			// image.setAttribute('src', stories[selectedStory].image);
 		}
 	}
 
 	onMount(() => {
 		body = document.querySelector('.body-content');
-		image = document.querySelector('.main_article_image');
 
 		updateMainStory(0);
 		updateOtherStories();
@@ -61,7 +47,7 @@
 			const body = document.createElement('div');
 			const date = document.createElement('small');
 
-			title.innerHTML = story.header;
+			title.innerHTML = story.title;
 			body.innerHTML = story.body;
 			date.innerHTML = story.date;
 
@@ -80,28 +66,32 @@
 </script>
 
 <div class="container">
-	<div class="latest pa-4">
-		<div class="main_article_image">
-			<!-- svelte-ignore a11y-img-redundant-alt -->
-			<img
-				src={stories[selectedStory ? selectedStory : 0].image
-					? stories[selectedStory ? selectedStory : 0].image
-					: imagePlaceholder}
-				alt="Story image"
-			/>
-		</div>
+	{#if stories.length > 0}
+		<div class="latest pa-4">
+			<div class="main_article_image">
+				<!-- svelte-ignore a11y-img-redundant-alt -->
+				<img
+					src={stories[selectedStory ? selectedStory : 0].image
+						? stories[selectedStory ? selectedStory : 0].image
+						: imagePlaceholder}
+					alt="Story image"
+				/>
+			</div>
 
-		<h4 class="mt-2">
-			{stories[selectedStory ? selectedStory : 0].header}
-		</h4>
-		<p><small>{stories[selectedStory ? selectedStory : 0].date}</small></p>
-		<div class="body-content" />
-	</div>
-	<div class="previous">
-		<h4 class="ma-4">All stories</h4>
-		<div class="all-stories" />
-		<div class="story" style="display: none" />
-	</div>
+			<h4 class="mt-2">
+				{stories[selectedStory ? selectedStory : 0].title}
+			</h4>
+			<p>
+				<small>{stories[selectedStory ? selectedStory : 0].date}</small>
+			</p>
+			<div class="body-content" />
+		</div>
+		<div class="previous">
+			<h4 class="ma-4">All stories</h4>
+			<div class="all-stories" />
+			<div class="story" style="display: none" />
+		</div>
+	{/if}
 </div>
 
 <style lang="scss">
