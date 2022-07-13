@@ -18,3 +18,11 @@ For now this resource is a MVP and we have future releases optimizing layout. Fe
 ```
 
 2. Add the image from the repository to your qb-inventory image folder.
+
+## Todo
+
+- [ ] Prison sentences
+- [ ] City news (release notes for city)
+- [ ] Feedback messages for actions
+- [ ] Image URL validation
+- [ ] Update stories
