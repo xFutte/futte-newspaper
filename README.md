@@ -1,5 +1,3 @@
-# THIS IS STILL IN DEVELOPMENT AND NOT USABLE YET
-
 # qb-newsstands
 
 This standalone resource will add a newspaper functionality to the newsstands properties in FiveM. 
@@ -8,6 +6,7 @@ For now this resource is a MVP and we have future releases optimizing layout. Fe
 
 ## Dependencies
 qb-target
+oxmysql
 
 ## Implementation
 
