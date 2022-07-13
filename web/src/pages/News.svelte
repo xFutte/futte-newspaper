@@ -1,74 +1,51 @@
 <script lang="ts">
-	import moment from 'moment';
 	import { onMount } from 'svelte';
+	import moment from 'moment';
+	import type { Story } from '../interfaces/story';
 
-	let stories: Array<Story> = [];
+	// Placeholder image if none is provided/wrong image link
+	const imagePlaceholder: string =
+		'https://reviverestore.org/wp-content/uploads/2017/05/placeholder-image-cropped.jpg';
+
+	export let stories: Array<Story>;
+
+	let body: HTMLDivElement | null;
+	let image: HTMLImageElement | null;
 	let selectedStory: number = 0;
 
-	function updateMainStory(id: number): void {
-		selectedStory = id - 1;
+	// Provide a story if no stories have been received.
+	if (stories.length === 0) {
+		stories.push({
+			header: 'No news',
+			image: imagePlaceholder,
+			date: moment().format('LTT'),
+			id: 0,
+			body: 'No news have been written - write the first!',
+			type: 'news',
+		});
+	}
 
-		const body = document.querySelector('.body-content');
+	function updateMainStory(id: number): void {
+		selectedStory = id;
 
 		// We need to do insert the text into the DOM this way due to how we get everything from the backend
-		if (body) {
-			body.innerHTML = stories[id - 1].body;
+		if (body && image) {
+			body.innerHTML = stories[selectedStory].body;
+			// image.setAttribute('src', stories[selectedStory].image);
 		}
 	}
 
-	stories = [
-		{
-			id: 1,
-			type: 'news',
-			image: 'https://i.ytimg.com/vi/VDcldO8jGTI/maxresdefault.jpg',
-			header: 'Story 1',
-			body: '<p>boasdasddy</p><p>boasdasddy</p><p>boasdasddy</p><p>boasdasddy</p>',
-			date: moment(new Date()).format('LLL'),
-		},
-		{
-			id: 2,
-			type: 'news',
-			image: 'https://ichef.bbci.co.uk/news/999/cpsprodpb/15951/production/_117310488_16.jpg',
-			header: 'Story 2',
-			body: '<p>boasdasddy</p>',
-			date: moment(new Date()).format('LLL'),
-		},
-	];
-
-	let bodyElement: HTMLDivElement | null =
-		document.querySelector('.body-content');
-
-	if (bodyElement) {
-		bodyElement.innerHTML = stories[0].body;
-	}
-
-	function ConvertStringToHTML(convert: string): HTMLElement {
-		let parser = new DOMParser();
-		let doc = parser.parseFromString(convert, 'text/html');
-
-		return doc.body;
-	}
-
-	console.log(ConvertStringToHTML(stories[0].body).innerHTML);
-
-	// Interfaces
-	interface Story {
-		id: number;
-		type: string;
-		image: string;
-		header: string;
-		body: string;
-		date: string;
-	}
-
 	onMount(() => {
-		updateMainStory(1);
+		body = document.querySelector('.body-content');
+		image = document.querySelector('.main_article_image');
+
+		updateMainStory(0);
 		updateOtherStories();
 	});
 
 	function updateOtherStories(): void {
-		stories.forEach((story: Story) => {
-			const container = document.querySelector('.other-stories');
+		stories.forEach((story: Story, index) => {
+			const container = document.querySelector('.all-stories');
 
 			const storyContainer = document.createElement('div');
 
@@ -91,49 +68,46 @@
 			storyContainer?.appendChild(title);
 			storyContainer?.appendChild(date);
 			storyContainer?.appendChild(body);
+			storyContainer.setAttribute('data-id', index.toString());
 
 			storyContainer.addEventListener('click', () => {
-				updateMainStory(story.id)
-			})
+				updateMainStory(index);
+			});
 
 			container?.appendChild(storyContainer);
 		});
-
-		
 	}
 </script>
 
 <div class="container">
 	<div class="latest pa-4">
-		<!-- svelte-ignore a11y-missing-attribute -->
 		<div class="main_article_image">
-			<img src={stories[selectedStory].image} />
+			<!-- svelte-ignore a11y-img-redundant-alt -->
+			<img
+				src={stories[selectedStory ? selectedStory : 0].image
+					? stories[selectedStory ? selectedStory : 0].image
+					: imagePlaceholder}
+				alt="Story image"
+			/>
 		</div>
 
-		<h4 class="mt-2">{stories[selectedStory].header}</h4>
-		<p><small>{stories[selectedStory].date}</small></p>
+		<h4 class="mt-2">
+			{stories[selectedStory ? selectedStory : 0].header}
+		</h4>
+		<p><small>{stories[selectedStory ? selectedStory : 0].date}</small></p>
 		<div class="body-content" />
 	</div>
 	<div class="previous">
-		<h4 class="ma-4">Other stories</h4>
-		<div class="other-stories" />
-		<div class="story" style="display: none"></div>
-		<!-- {#each stories as story}
-			<div
-				on:click={() => updateMainStory(story.id)}
-				class="story pt-3 pb-2 pl-4 pr-4"
-			>
-				<h6>{story.header}</h6>
-				<small>{story.date}</small>
-				<p>
-					{story.body}
-				</p>
-			</div>
-		{/each} -->
+		<h4 class="ma-4">All stories</h4>
+		<div class="all-stories" />
+		<div class="story" style="display: none" />
 	</div>
 </div>
 
-<style>
+<style lang="scss">
+	$scrollbar-thumb-color: #90a4ae;
+	$scrollbar-background-color: #cfd8dc;
+
 	.container {
 		display: flex;
 		flex-direction: row;
@@ -152,6 +126,23 @@
 
 	.latest {
 		width: 65%;
+
+		scrollbar-width: thin;
+		scrollbar-color: $scrollbar-thumb-color $scrollbar-background-color;
+
+		&::-webkit-scrollbar {
+			width: 10px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: $scrollbar-background-color;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: $scrollbar-thumb-color;
+			border-radius: 6px;
+			border: 3px solid $scrollbar-background-color;
+		}
 	}
 
 	.main_article_image {

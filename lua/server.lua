@@ -1,5 +1,7 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
+
+
 local nilStory = {
     [1] = {
         id = 0,
@@ -29,7 +31,8 @@ QBCore.Functions.CreateUseableItem("newspaper", function(source, item)
     local Player = QBCore.Functions.GetPlayer(src)
 
     if Player.Functions.GetItemByName(item.name) ~= nil then
-        TriggerClientEvent('newsstands:client:openNewspaper', src)
+        -- print(src)
+        TriggerClientEvent('newsstands:newspaper:open', src)
     end
 end)
 

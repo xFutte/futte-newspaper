@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		Tabs,
 		Tab,
@@ -11,9 +11,13 @@
 	import Reporter from '../pages/Reporter.svelte';
 
 	import { mdiStar } from '@mdi/js';
+import type { Story } from '../interfaces/story';
 
 	let value = 0;
 	let isReporter = true;
+
+	export let stories: Array<Story>;
+
 </script>
 
 <AppBar>
@@ -25,7 +29,9 @@
 				<!-- <Tab>Prison sentences</Tab>
 				<Tab>City updates</Tab> -->
 				{#if isReporter == true}<Tab
-						><Icon path={mdiStar} /><span class="ml-2">Reporter actions</span></Tab
+						><Icon path={mdiStar} /><span class="ml-2"
+							>Reporter actions</span
+						></Tab
 					>{/if}
 			</div>
 		</Tabs>
@@ -34,7 +40,7 @@
 
 <Window {value}>
 	<WindowItem>
-		<News />
+		<News stories={stories} />
 	</WindowItem>
 	<!-- <WindowItem>
 		<h4>Item 2</h4>

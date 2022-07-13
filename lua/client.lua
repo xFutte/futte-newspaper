@@ -1,34 +1,7 @@
--- SVELTE UTILITY CLASSES
-RegisterCommand('svelte:show', function()
-    SendNUIMessage({
-        action = 'setVisible',
-        data = true
-    })
-    SetNuiFocus(true, true)
-end)
-
-RegisterNUICallback('getClientData', function(_, cb)
-    local playerCoords = GetEntityCoords(PlayerPedId())
-    cb({
-        x = math.ceil(playerCoords.x),
-        y = math.ceil(playerCoords.y),
-        z = math.ceil(playerCoords.z)
-    })
-end)
-
-RegisterNUICallback('hideUI', function(_, cb)
-    cb({})
-    SetNuiFocus(false, false)
-end)
-
-RegisterNUICallback('showUI', function(_, cb)
-    cb({})
-    SetNuiFocus(true, true)
-end)
-
--- CUSTOM CODE
 local QBCore = exports['qb-core']:GetCoreObject()
 local story = {}
+
+
 
 local NewsStands = {"prop_news_disp_02a_s", "prop_news_disp_02c", "prop_news_disp_05a", "prop_news_disp_02e",
                     "prop_news_disp_03c", "prop_news_disp_06a", "prop_news_disp_02a", "prop_news_disp_02d",
@@ -37,9 +10,10 @@ local NewsStands = {"prop_news_disp_02a_s", "prop_news_disp_02c", "prop_news_dis
 local JailStands = {"prop_news_disp_03a"}
 
 local function AddItemToNewsStand(storyType, paper, paperIcon, stands)
-    exports['qb-target']:AddTargetModel(stands, {
-        options = {{
-            label = paper,
+    exports['qb-target']:AddTargetModel(stands, { 
+        options = { 
+        { 
+            label = paper, 
             icon = paperIcon,
             action = function(entity)
 
@@ -55,10 +29,14 @@ local function AddItemToNewsStand(storyType, paper, paperIcon, stands)
     })
 end
 
-RegisterNetEvent('newsstands:client:openNewspaper', function()
+RegisterNetEvent('newsstands:newspaper:open', function(type)
+    SetNuiFocus(true, true)
+
     QBCore.Functions.TriggerCallback('newsstands:server:getStories', function(data)
         SendNUIMessage({
-            stories = data
+            action = 'show',
+            paper = type,
+            story = data
         })
     end, 'news')
 
@@ -66,7 +44,8 @@ RegisterNetEvent('newsstands:client:openNewspaper', function()
     SetNuiFocus(true, true)
 end)
 
-RegisterNUICallback('hide', function()
+RegisterNUICallback('hideUI', function(_, cb)
+    cb({})
     SetNuiFocus(false, false)
     TriggerEvent('animations:client:EmoteCommandStart', {"c"})
 end)

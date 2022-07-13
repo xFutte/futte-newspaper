@@ -1,15 +1,19 @@
 <script lang="ts">
+	import { visibility } from './store/stores';
 	import VisibilityProvider from './providers/VisibilityProvider.svelte';
-	import { debugData } from './utils/debugData';
 	import { MaterialApp } from 'svelte-materialify';
 	import Content from './components/Content.svelte';
+	import type { Story } from './interfaces/story';
 
-	debugData([
-		{
-			action: 'setVisible',
-			data: true,
-		},
-	]);
+	let stories: Array<Story>;
+
+	window.addEventListener('message', (event) => {
+		// stories = event.data.stories;
+		stories = []
+		visibility.set(true);
+
+		console.log(stories);
+	});
 </script>
 
 <svelte:head>
@@ -19,12 +23,12 @@
 <main class="container">
 	<VisibilityProvider>
 		<MaterialApp>
-			<Content />
+			<Content {stories} />
 		</MaterialApp>
 	</VisibilityProvider>
 </main>
 
-<style>
+<style lang="scss">
 	.container {
 		position: absolute;
 		top: 50%;

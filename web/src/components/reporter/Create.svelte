@@ -1,7 +1,16 @@
 <script lang="ts">
 	import moment from 'moment';
 
-	import { TextField, Button } from 'svelte-materialify';
+	import {
+		TextField,
+		Textarea,
+		Button,
+		Dialog,
+		Card,
+		CardTitle,
+		CardText,
+		CardActions,
+	} from 'svelte-materialify';
 	import { quill } from 'svelte-quill';
 
 	const options = {
@@ -31,6 +40,19 @@
 		// fetchNui('publishStory', story);
 	}
 
+	let active = false;
+
+	function close() {
+		active = false;
+	}
+
+	function preview() {
+		active = true;
+
+		const container = document.querySelector('.preview-content')
+		console.log(container);
+	}
+
 	interface Story {
 		id?: number;
 		type: string;
@@ -49,14 +71,24 @@
 <div class="pt-4 container">
 	<TextField id="title" outlined>Title</TextField>
 	<TextField id="image" outlined>Image URL</TextField>
-	<!-- <Textarea id="body" outlined>Body</Textarea> -->
+	<Textarea id="body" outlined>Body</Textarea>
 	<div
 		class="editor mb-2"
 		use:quill={options}
 		on:text-change={(e) => (content = e.detail)}
 	/>
-	<Button on:click={publishArticle}>Publish</Button>
+	<Button on:click={publishArticle} class="green white-text">Publish</Button>
+	<Button disabled on:click={preview}>Preview (In development)</Button>
 </div>
+
+<!-- <Dialog persistent bind:active>
+	<div class="preview-content">
+
+	</div>
+
+	<Button on:click={publishArticle} class="green white-text">Publish</Button>
+	<Button on:click={close}>Back</Button>
+</Dialog> -->
 
 <style>
 	.container {
