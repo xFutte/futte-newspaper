@@ -11,9 +11,10 @@ For now, this ressource is in MVP. Following features will be implemented in the
 
 - [ ] Prison sentences
 - [ ] City news (release notes for city)
-- [ ] Feedback messages for actions
+- [ ] Action feedback
 - [ ] Image URL validation
 - [ ] Update stories
+- [x] Input sanitization
 
 Feel free to report bugs or improvements and they'll be looked at.
 
