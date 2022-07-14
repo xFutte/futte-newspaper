@@ -6,7 +6,7 @@ lua54 'yes'
 ui_page 'web/public/index.html'
 
 author 'xFutte'
-description 'Open news stand to read release notes'
+description 'News script'
 version '1.0'
 
 shared_script 'config.lua'
