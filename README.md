@@ -2,7 +2,20 @@
 
 This standalone resource will add a newspaper functionality to the newsstands properties in FiveM. 
 
+### Preview
+| Opening newspaper | Reporter actions | 
+|--------------------| --------------- |
+| ![Opening newspaper](https://i.imgur.com/zEXI3oh.png) | ![Opening newspaper](https://i.imgur.com/68pjuKY.png) |
+
 For now this resource is a MVP and we have future releases optimizing layout. Feel free to make pull requests or issues and I'll address those.
+
+*Upcoming features*
+
+- [ ] Prison sentences
+- [ ] City news (release notes for city)
+- [ ] Feedback messages for actions
+- [ ] Image URL validation
+- [ ] Update stories
 
 ## Dependencies
 - qb-target
@@ -18,11 +31,3 @@ For now this resource is a MVP and we have future releases optimizing layout. Fe
 ```
 
 2. Add the image from the repository to your qb-inventory image folder.
-
-## Todo
-
-- [ ] Prison sentences
-- [ ] City news (release notes for city)
-- [ ] Feedback messages for actions
-- [ ] Image URL validation
-- [ ] Update stories
