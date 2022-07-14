@@ -23,7 +23,7 @@ Feel free to report bugs or improvements and they'll be looked at.
 - qb-inventory
 - oxmysql
 
-## Implementation
+### Implementation
 
 1. Add following to your shared.lua file:
 
@@ -33,3 +33,9 @@ Feel free to report bugs or improvements and they'll be looked at.
 ```
 
 2. Add the image from the repository to your qb-inventory image folder.
+
+#### Costumization
+
+**Recommended**: You should update the default story in `App.svelte` to what you want. 
+
+There are a couple of things that you can costumize out of the box. In the `config.lua`, you can change the price of the newspaper. 
