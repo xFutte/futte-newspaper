@@ -59,8 +59,6 @@ RegisterNetEvent('newsstands:server:publishStory', function(data)
 
             return
         else
-
-            print(playerName)
             exports.oxmysql:insert(
                 'INSERT INTO newsstands (story_type, title, body, date, image, publisher) VALUES (?, ?, ?, ?, ?, ?)',
                 {'news', data.title, data.body, data.date, data.image, playerName})
