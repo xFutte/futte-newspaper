@@ -3,9 +3,9 @@
 This standalone resource will add a newspaper functionality to the newsstands properties in FiveM. 
 
 ### Preview
-| Opening newspaper | Reporter actions | 
-|--------------------| --------------- |
-| ![Opening newspaper](https://i.imgur.com/zEXI3oh.png) | ![Opening newspaper](https://i.imgur.com/68pjuKY.png) |
+| Opening newspaper | Reporter actions | Buying newspaper |
+|--------------------| --------------- | -----------------|
+| ![Opening newspaper](https://i.imgur.com/zEXI3oh.png) | ![Opening newspaper](https://i.imgur.com/68pjuKY.png) | ![Buying newspaper](https://i.imgur.com/ounIQJY.png) |
 
 For now this resource is a MVP and we have future releases optimizing layout. Feel free to make pull requests or issues and I'll address those.
 
