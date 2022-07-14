@@ -14,6 +14,7 @@ For now, this ressource is in MVP. Following features will be implemented in the
 - [ ] Feedback messages for actions
 - [ ] Image URL validation
 - [ ] Update stories
+- [x] Input sanitization
 
 Feel free to report bugs or improvements and they'll be looked at.
 
