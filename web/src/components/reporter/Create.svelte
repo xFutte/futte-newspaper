@@ -1,18 +1,11 @@
 <script lang="ts">
+	import DOMPurify from 'dompurify';
+
 	import moment from 'moment';
 
-	import {
-		TextField,
-		Textarea,
-		Button,
-		Dialog,
-		Card,
-		CardTitle,
-		CardText,
-		CardActions,
-	} from 'svelte-materialify';
+	import { TextField, Button } from 'svelte-materialify';
 	import { quill } from 'svelte-quill';
-import { fetchNui } from '../../utils/fetchNui';
+	import { fetchNui } from '../../utils/fetchNui';
 
 	const options = {
 		modules: {
@@ -29,16 +22,20 @@ import { fetchNui } from '../../utils/fetchNui';
 		const title: HTMLInputElement | null = document.querySelector('#title');
 		const image: HTMLInputElement | null = document.querySelector('#image');
 
-		// No security check initially - will be added
-		story = {
-			type: 'news',
-			image: image?.value,
-			title: title ? title.value : '',
-			body: content.html,
-			date: moment(new Date()).format('MMMM Do YYYY')
-		};
+		// Sanitize input and post
+		if (DOMPurify.isSupported) {
+			story = {
+				type: 'news',
+				image: DOMPurify.sanitize(image?.value),
+				title: DOMPurify.sanitize(title?.value)
+					? DOMPurify.sanitize(title?.value)
+					: '',
+				body: DOMPurify.sanitize(content.html),
+				date: moment(new Date()).format('MMMM Do YYYY'),
+			};
 
-		fetchNui('publishStory', story);
+			fetchNui('publishStory', story);
+		}
 	}
 
 	let active = false;
@@ -50,7 +47,7 @@ import { fetchNui } from '../../utils/fetchNui';
 	function preview() {
 		active = true;
 
-		const container = document.querySelector('.preview-content')
+		const container = document.querySelector('.preview-content');
 		console.log(container);
 	}
 
@@ -89,7 +86,6 @@ import { fetchNui } from '../../utils/fetchNui';
 	<Button on:click={publishArticle} class="green white-text">Publish</Button>
 	<Button on:click={close}>Back</Button>
 </Dialog> -->
-
 <style>
 	.container {
 		width: 100%;
