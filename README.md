@@ -19,6 +19,7 @@ Feel free to report bugs or improvements and they'll be looked at.
 
 ## Dependencies
 - qb-target
+- qb-inventory
 - oxmysql
 
 ## Implementation
