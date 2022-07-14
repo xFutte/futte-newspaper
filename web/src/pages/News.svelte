@@ -10,11 +10,20 @@
 	export let stories: Array<Story>;
 
 	let body: HTMLDivElement | null;
-	let image: HTMLImageElement | null;
 	let selectedStory: number = 0;
+
+	let storyTitle: string;
+	let storyImage: string;
+	let storyPublisher: string;
+	let storyDate: string;
 
 	function updateMainStory(id: number): void {
 		selectedStory = id;
+
+		storyImage = stories[selectedStory].image;
+		storyTitle = stories[selectedStory].title;
+		storyPublisher = stories[selectedStory].publisher;
+		storyDate = stories[selectedStory].date;
 
 		// We need to do insert the text into the DOM this way due to how we get everything from the backend
 		if (body) {
@@ -71,26 +80,23 @@
 		<div class="latest pa-4">
 			<div class="main_article_image">
 				<!-- svelte-ignore a11y-img-redundant-alt -->
-				<img
-					src={stories[selectedStory ? selectedStory : 0].image
-						? stories[selectedStory ? selectedStory : 0].image
-						: imagePlaceholder}
-					alt="Story image"
-				/>
+				<img src={storyImage} alt="Story image" />
 			</div>
 
 			<h4 class="mt-2">
-				{stories[selectedStory ? selectedStory : 0].title}
+				{storyTitle}
 			</h4>
 			<p>
-				<small>{stories[selectedStory ? selectedStory : 0].date}</small>
+				<small>Written by {storyPublisher} on {storyDate} </small>
 			</p>
+
+			<hr class="seperator" />
+
 			<div class="body-content" />
 		</div>
 		<div class="previous">
-			<h4 class="ma-4">All stories</h4>
+			<h4 class="ma-4">Latest stories</h4>
 			<div class="all-stories" />
-			<div class="story" style="display: none" />
 		</div>
 	{/if}
 </div>
@@ -103,6 +109,10 @@
 		display: flex;
 		flex-direction: row;
 		flex: 1;
+	}
+
+	.seperator {
+		margin-bottom: 1em;
 	}
 
 	.previous,
@@ -136,13 +146,6 @@
 		}
 	}
 
-	:global(.ellipsis) {
-		display: -webkit-box;
-		-webkit-line-clamp: 4;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-
 	.main_article_image {
 		width: 100%;
 	}
@@ -151,8 +154,15 @@
 		width: 100%;
 	}
 
-	div :global(.story:hover) {
+	:global(.story:hover) {
 		background: lightgrey;
 		cursor: pointer;
+	}
+
+	:global(.ellipsis) {
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 </style>
