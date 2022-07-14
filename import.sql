@@ -7,5 +7,6 @@ CREATE TABLE `newsstands` (
 	`jailed_player` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
 	`jailed_time` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
 	`image` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`publisher` VARCHAR(250) NOT NULL DEFAULT 'Los Santos Newspaper' COLLATE 'utf8_general_ci',
 	PRIMARY KEY (`id`) USING BTREE
 )
