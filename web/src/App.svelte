@@ -13,15 +13,16 @@
 		isReporter = event.data.isReporter;
 
 		if (!event.data.stories.length) {
-			// Fallback story if there are no stories found
+			// Placeholder story if none is available in the database - should be updated before use of resource
 			stories = [
 				{
 					id: 0,
-					title: 'No news',
-					body: 'The newspaper is blank. Contact your local newsteam to make them publish something!',
-					image: 'https://media3.giphy.com/media/l2JhORT5IFnj6ioko/giphy.gif?cid=ecf05e471lmb6vl1v3yftrccoy783zss3hmnkr7kccfzctxi&rid=giphy.gif&ct=g',
+					title: 'Welcome to qb-newsstands',
+					body: "<p>qb-newsstands is a standalone ressource for FiveM. It has the following dependencies:</p><p><ul><li>qb-target</li><li>oxmysql</li></ul></p><p>I hope you'll enjoy the resource. Feel free to open issues if you find a bug/wish new functionality.</p><p>- xFutte</p>",
+					image: 'https://w0.peakpx.com/wallpaper/131/302/HD-wallpaper-grand-theft-auto-5-gta-v-grand-theft-auto-v-open-world-gaming-video-game-game-gta-5.jpg',
 					date: moment().format('MMMM Do YYYY'),
 					type: 'news',
+					publisher: 'xFutte @ Github',
 				},
 			];
 		} else {
