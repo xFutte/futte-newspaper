@@ -11,13 +11,12 @@
 	import Reporter from '../pages/Reporter.svelte';
 
 	import { mdiStar } from '@mdi/js';
-import type { Story } from '../interfaces/story';
+	import type { Story } from '../interfaces/story';
 
 	let value = 0;
-	let isReporter = true;
 
 	export let stories: Array<Story>;
-
+	export let isReporter: boolean;
 </script>
 
 <AppBar>
@@ -26,8 +25,8 @@ import type { Story } from '../interfaces/story';
 		<Tabs class="green-text" bind:value fixedTabs>
 			<div slot="tabs">
 				<Tab>Newspaper</Tab>
-				<!-- <Tab>Prison sentences</Tab>
-				<Tab>City updates</Tab> -->
+				<Tab disabled>Prison sentences (coming soon)</Tab>
+				<Tab disabled>City updates (coming soon)</Tab>
 				{#if isReporter == true}<Tab
 						><Icon path={mdiStar} /><span class="ml-2"
 							>Reporter actions</span
@@ -40,10 +39,10 @@ import type { Story } from '../interfaces/story';
 
 <Window {value}>
 	<WindowItem>
-		<News stories={stories} />
+		<News {stories} />
 	</WindowItem>
-	<!-- <WindowItem>
-		<h4>Item 2</h4>
+	<WindowItem>
+		<h4>Prison sentences</h4>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
 			accumsan, diam et elementum gravida, arcu mi fermentum nibh, vel
@@ -54,7 +53,7 @@ import type { Story } from '../interfaces/story';
 		</p>
 	</WindowItem>
 	<WindowItem>
-		<h4>Item 3</h4>
+		<h4>City updates</h4>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
 			accumsan, diam et elementum gravida, arcu mi fermentum nibh, vel
@@ -63,8 +62,8 @@ import type { Story } from '../interfaces/story';
 			interdum elit imperdiet ut. Suspendisse et sagittis erat, euismod
 			vulputate enim. Etiam feugiat sit amet justo vitae commodo.
 		</p>
-	</WindowItem> -->
+	</WindowItem>
 	<WindowItem>
-		<Reporter stories={stories}/>
+		<Reporter {stories} />
 	</WindowItem>
 </Window>

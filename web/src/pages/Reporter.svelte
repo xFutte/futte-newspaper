@@ -4,7 +4,8 @@
 
 	import { mdiPencil, mdiFileEdit, mdiDeleteForever } from '@mdi/js';
 	import Delete from '../components/reporter/Delete.svelte';
-	import type { Story } from '../interfaces/story';
+
+	export let stories;
 </script>
 
 <div class="pa-4">
@@ -19,7 +20,10 @@
 				<Create />
 			</ExpansionPanel>
 			<ExpansionPanel disabled>
-				<span slot="header" class="pt-1"><Icon path="{mdiFileEdit}" class="mr-2"/>Update stories (coming soon)</span>
+				<span slot="header" class="pt-1"
+					><Icon path={mdiFileEdit} class="mr-2" />Update stories
+					(coming soon)</span
+				>
 				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat
 				amet natus obcaecati molestiae quas mollitia error modi atque aliquam
 				esse.
