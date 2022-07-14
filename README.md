@@ -7,15 +7,15 @@ This standalone resource will add a newspaper functionality to the newsstands pr
 |--------------------| --------------- | -----------------|
 | ![Opening newspaper](https://i.imgur.com/zEXI3oh.png) | ![Opening newspaper](https://i.imgur.com/68pjuKY.png) | ![Buying newspaper](https://i.imgur.com/ounIQJY.png) |
 
-For now this resource is a MVP and we have future releases optimizing layout. Feel free to make pull requests or issues and I'll address those.
-
-*Upcoming features*
+For now, this ressource is in MVP. Following features will be implemented in the near future:
 
 - [ ] Prison sentences
 - [ ] City news (release notes for city)
 - [ ] Feedback messages for actions
 - [ ] Image URL validation
 - [ ] Update stories
+
+Feel free to report bugs or improvements and they'll be looked at.
 
 ## Dependencies
 - qb-target
