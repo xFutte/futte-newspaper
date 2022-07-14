@@ -5,4 +5,5 @@ export interface Story {
 	title: string;
 	body: string;
 	date: string;
+	publisher: string;
 }

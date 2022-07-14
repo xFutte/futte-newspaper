@@ -48,19 +48,22 @@ RegisterNetEvent('newsstands:server:publishStory', function(data)
     local src = source
     local knownPlayers = {}
 
+    local playerName = Player.PlayerData.charinfo.firstname .. ' ' .. Player.PlayerData.charinfo.lastname
+
     knownPlayers[source] = true;
 
     if Player.PlayerData.job['name'] == 'reporter' then
         if not knownPlayers[source] then
-            print('Hm?')
             -- Yeet the player 
             knownPlayers[source] = nil;
 
             return
         else
+
+            print(playerName)
             exports.oxmysql:insert(
-                'INSERT INTO newsstands (story_type, title, body, date, image) VALUES (?, ?, ?, ?, ?)',
-                {'news', data.title, data.body, data.date, data.image})
+                'INSERT INTO newsstands (story_type, title, body, date, image, publisher) VALUES (?, ?, ?, ?, ?, ?)',
+                {'news', data.title, data.body, data.date, data.image, playerName})
 
             TriggerClientEvent('QBCore:Notify', src, 'Story has been published!', 'success')
         end
