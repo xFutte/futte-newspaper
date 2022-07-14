@@ -37,6 +37,7 @@
 
 			storyContainer.classList.add(
 				'story',
+				'ellipsis',
 				'pt-3',
 				'pb-2',
 				'pl-4',
@@ -133,6 +134,13 @@
 			border-radius: 6px;
 			border: 3px solid $scrollbar-background-color;
 		}
+	}
+
+	:global(.ellipsis) {
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 
 	.main_article_image {
