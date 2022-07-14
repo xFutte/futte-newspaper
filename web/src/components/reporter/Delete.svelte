@@ -30,7 +30,7 @@
 	// Stories will be provided by the content component
 	export let stories;
 
-	let payload: object = {}
+	let payload: object = {};
 	let active = false;
 	let deleteId: number | null = null;
 
@@ -52,27 +52,27 @@
 		};
 
 		fetchNui('deleteStory', payload);
-		
+
 		deleteId = null;
-		payload = {}
+		payload = {};
 	}
 </script>
 
 <div class="container pt-4">
-	<DataTable>
+	<DataTable class="datatable">
 		<DataTableHead>
 			<DataTableRow>
 				<DataTableCell>Id</DataTableCell>
 				<DataTableCell>Title</DataTableCell>
 				<DataTableCell numeric>Date</DataTableCell>
-				<DataTableCell>Delete</DataTableCell>
+				<DataTableCell numeric>Delete</DataTableCell>
 			</DataTableRow>
 		</DataTableHead>
 		<DataTableBody>
 			{#each stories as story}
 				<DataTableRow>
 					<DataTableCell>{story.id}</DataTableCell>
-					<DataTableCell>{story.header}</DataTableCell>
+					<DataTableCell>{story.title}</DataTableCell>
 					<DataTableCell numeric>{story.date}</DataTableCell>
 					<DataTableCell numeric
 						><Button on:click={() => open(story.id)}
@@ -89,8 +89,7 @@
 	<Card>
 		<CardTitle>Delete story?</CardTitle>
 		<CardText>
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia
-			deleniti natus dolore, rerum hic beatae officiis at ea sequi labore.
+			Are you sure you want to delete the story? This can't be undone.
 		</CardText>
 		<CardActions>
 			<Button on:click={() => close(true)} text class="red-text"
@@ -106,7 +105,8 @@
 		width: 100%;
 	}
 
-	:global(.s-tbl > table) {
+	:global(.s-tbl table),
+	:global(.s-tbl) {
 		width: 100%;
 	}
 </style>

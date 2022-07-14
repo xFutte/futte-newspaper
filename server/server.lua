@@ -1,9 +1,17 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
 QBCore.Functions.CreateCallback('newsstands:server:getStories', function(source, cb, storyType)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    local isReporter = false
+
+    if Player.PlayerData.job['name'] == 'reporter' then
+        isReporter = true
+    end
+
     local data = exports.oxmysql:executeSync('SELECT * FROM newsstands WHERE story_type = ? ORDER BY id DESC LIMIT 7',
         {storyType})
-    cb(data)
+    cb(data, isReporter)
 end)
 
 -- Handle getting papers from stands
@@ -72,8 +80,8 @@ RegisterNetEvent('newsstands:server:deleteStory', function(data)
 
     if Player.PlayerData.job['name'] == 'reporter' then
         if not knownPlayers[source] then
-            print('Hm?')
-            -- Yeet the player 
+            -- Player not supposed to have access to this. Ban the player.
+
             knownPlayers[source] = nil;
 
             return

@@ -6,22 +6,21 @@
 	import type { Story } from './interfaces/story';
 	import moment from 'moment';
 
-	const imagePlaceholder: string =
-		'https://reviverestore.org/wp-content/uploads/2017/05/placeholder-image-cropped.jpg';
-
 	let stories: Array<Story>;
+	let isReporter: boolean;
 
 	window.addEventListener('message', (event) => {
-		
+		isReporter = event.data.isReporter;
 
 		if (!event.data.stories.length) {
+			// Fallback story if there are no stories found
 			stories = [
 				{
 					id: 0,
 					title: 'No news',
 					body: 'The newspaper is blank. Contact your local newsteam to make them publish something!',
-					image: 'https://media4.giphy.com/media/XEZZliwJmGg6otzKK1/giphy.gif?cid=ecf05e4774hvzt8xh1biwz0a03w9lser5n4rng5mh6uodji0&rid=giphy.gif&ct=g',
-					date: moment().format(),
+					image: 'https://media3.giphy.com/media/l2JhORT5IFnj6ioko/giphy.gif?cid=ecf05e471lmb6vl1v3yftrccoy783zss3hmnkr7kccfzctxi&rid=giphy.gif&ct=g',
+					date: moment().format('MMMM Do YYYY'),
 					type: 'news',
 				},
 			];
@@ -29,6 +28,7 @@
 			stories = event.data.stories;
 		}
 
+		// Show the newspaper GUI
 		visibility.set(true);
 	});
 </script>
@@ -40,7 +40,7 @@
 <main class="container">
 	<VisibilityProvider>
 		<MaterialApp>
-			<Content {stories} />
+			<Content {stories} {isReporter} />
 		</MaterialApp>
 	</VisibilityProvider>
 </main>
