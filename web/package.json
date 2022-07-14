@@ -17,6 +17,7 @@
     "@smui/tab": "5.0.1",
     "@smui/tab-bar": "5.0.1",
     "@tsconfig/svelte": "^2.0.0",
+    "@types/dompurify": "^2.3.3",
     "moment": "^2.29.3",
     "rollup": "^2.75.7",
     "rollup-plugin-css-only": "^3.1.0",
@@ -31,6 +32,8 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "dompurify": "^2.3.9",
+    "jsdom": "^20.0.0",
     "sirv-cli": "^1.0.0",
     "svelte-materialify": "^0.3.11"
   }
