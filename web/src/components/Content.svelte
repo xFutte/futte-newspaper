@@ -12,24 +12,30 @@
 
 	import { mdiStar } from '@mdi/js';
 	import type { Story } from '../interfaces/story';
+	import { Config } from '../../config';
 
 	let value = 0;
 
 	export let stories: Array<Story>;
 	export let isReporter: boolean;
+	export let reporterLevel: number;
 </script>
 
 <AppBar>
-	<span slot="title"> Los Santos News </span>
+	<span slot="title"> {Config.newspaperTitle} </span>
 	<div slot="extension">
 		<Tabs class="green-text" bind:value fixedTabs>
 			<div slot="tabs">
-				<Tab>Newspaper</Tab>
-				<Tab disabled>Prison sentences (coming soon)</Tab>
-				<Tab disabled>City updates (coming soon)</Tab>
+				<Tab>{Config.text.tabs.newspaper}</Tab>
+				{#if Config.display.showPrisonSentences}<Tab disabled
+						>{Config.text.tabs.prisonSentences}</Tab
+					>{/if}
+				{#if Config.display.showCityNews}<Tab disabled
+						>{Config.text.tabs.cityUpdates}</Tab
+					>{/if}
 				{#if isReporter == true}<Tab
 						><Icon path={mdiStar} /><span class="ml-2"
-							>Reporter actions</span
+							>{Config.text.tabs.reporterActions}</span
 						></Tab
 					>{/if}
 			</div>
@@ -64,6 +70,6 @@
 		</p>
 	</WindowItem>
 	<WindowItem>
-		<Reporter {stories} />
+		<Reporter {stories} {reporterLevel} />
 	</WindowItem>
 </Window>

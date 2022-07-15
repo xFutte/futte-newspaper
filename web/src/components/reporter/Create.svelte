@@ -26,9 +26,9 @@
 		if (DOMPurify.isSupported) {
 			story = {
 				type: 'news',
-				image: DOMPurify.sanitize(image?.value),
-				title: DOMPurify.sanitize(title?.value)
-					? DOMPurify.sanitize(title?.value)
+				image: DOMPurify.sanitize(image?.value as string),
+				title: DOMPurify.sanitize(title?.value as string)
+					? DOMPurify.sanitize(title?.value as string)
 					: '',
 				body: DOMPurify.sanitize(content.html),
 				date: moment(new Date()).format('MMMM Do YYYY'),
@@ -48,7 +48,6 @@
 		active = true;
 
 		const container = document.querySelector('.preview-content');
-		console.log(container);
 	}
 
 	interface Story {

@@ -7,12 +7,16 @@
 	import moment from 'moment';
 
 	let stories: Array<Story>;
+	let reporterLevel: number;
 	let isReporter: boolean;
 
 	window.addEventListener('message', (event) => {
-		isReporter = event.data.isReporter;
+		const data = event.data;
 
-		if (!event.data.stories.length) {
+		isReporter = data.isReporter;
+		reporterLevel = data.reporterLevel;
+
+		if (!data.stories.length) {
 			// Placeholder story if none is available in the database - should be updated before use of resource
 			stories = [
 				{
@@ -26,7 +30,7 @@
 				},
 			];
 		} else {
-			stories = event.data.stories;
+			stories = data.stories;
 		}
 
 		// Show the newspaper GUI
@@ -41,7 +45,7 @@
 <main class="container">
 	<VisibilityProvider>
 		<MaterialApp>
-			<Content {stories} {isReporter} />
+			<Content {stories} {isReporter} {reporterLevel} />
 		</MaterialApp>
 	</VisibilityProvider>
 </main>

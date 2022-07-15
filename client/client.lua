@@ -27,10 +27,11 @@ end
 AddItemToNewsStand('newspaper', 'Buy newspaper', 'fas fa-newspaper', NewsStands)
 
 RegisterNetEvent('newsstands:client:openNewspaper', function()
-    QBCore.Functions.TriggerCallback('newsstands:server:getStories', function(data, isReporter)
+    QBCore.Functions.TriggerCallback('newsstands:server:getStories', function(data, isReporter, reporterLevel)
         SendNUIMessage({
             stories = data,
-            isReporter = isReporter
+            isReporter = isReporter,
+            reporterLevel = reporterLevel
         })
     end, 'news')
 

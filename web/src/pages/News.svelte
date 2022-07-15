@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import moment from 'moment';
 	import type { Story } from '../interfaces/story';
+	import { Config } from '../../config';
 
 	// Placeholder image if none is provided/wrong image link
 	const imagePlaceholder: string =
@@ -78,24 +79,38 @@
 <div class="container">
 	{#if stories.length > 0}
 		<div class="latest pa-4">
-			<div class="main_article_image">
-				<!-- svelte-ignore a11y-img-redundant-alt -->
-				<img src={storyImage} alt="Story image" />
-			</div>
+			{#if Config.articles.showImage}
+				<div class="main_article_image">
+					<!-- svelte-ignore a11y-img-redundant-alt -->
+					<img src={storyImage} alt="Story image" />
+				</div>
+			{/if}
 
-			<h4 class="mt-2">
-				{storyTitle}
-			</h4>
-			<p>
-				<small>Written by {storyPublisher} on {storyDate} </small>
-			</p>
+			{#if Config.articles.showTitle}
+				<h4 class="mt-2">
+					{storyTitle}
+				</h4>
+			{/if}
+
+			{#if Config.articles.showPublisher || Config.articles.showDate}
+				<p>
+					<small
+						>{#if Config.articles.showPublisher}{Config.text
+								.articles.writtenBy}
+							{storyPublisher}
+							{#if Config.articles.showPublisher && Config.articles.showDate}{Config
+									.text.articles.on}{/if}
+						{/if}{#if Config.articles.showDate}{storyDate}{/if}
+					</small>
+				</p>
+			{/if}
 
 			<hr class="seperator" />
 
 			<div class="body-content" />
 		</div>
 		<div class="previous">
-			<h4 class="ma-4">Latest stories</h4>
+			<h4 class="ma-4">{Config.text.articles.latestStories}</h4>
 			<div class="all-stories" />
 		</div>
 	{/if}
