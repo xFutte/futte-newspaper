@@ -12,6 +12,7 @@ For now, this ressource is in MVP. Following features will be implemented in the
 - [ ] Prison sentences
 - [ ] City news (release notes for city)
 - [ ] Action feedback
+- [ ] Live form validation
 - [ ] Image URL validation
 - [ ] Update stories
 - [x] Input sanitization
