@@ -31,9 +31,9 @@ Feel free to report bugs or improvements and they'll be looked at.
 
 ```lua
 ['newspaper'] = {['name'] = 'newspaper', ['label'] = 'Newspaper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'newspaper.png', ['unique'] = false , ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Los Santos Newspaper'},
-
 ```
-### Configuration
+2. Add the newspaper.png image in the root of the resource into your qb-inventory folder, where all the other images are located.
+## Configuration
 
 1. There are quite a lot of configurations possible out-of-the-box with qb-news. This consists of two files: `config.js` and `config.lua`.
 
@@ -118,4 +118,3 @@ Config = {
 }
 ```
 
-2. Add the newspaper.png image in the root of the resource into your qb-inventory folder, where all the other images are located.
