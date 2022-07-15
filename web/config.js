@@ -5,11 +5,17 @@ export const Config = {
 		showTitle: true,
 		showDate: true,
 		showPublisher: true,
+		titleMaxLength: 60,
 	},
 	display: {
 		showPrisonSentences: true,
 		showCityNews: true,
 	},
+	publishArticleControls: [
+		['bold', 'italic', 'underline', 'strike'],
+		['blockquote', 'image'],
+		[{ list: 'ordered' }, { list: 'bullet' }],
+	],
 	reporter: [
 		{
 			grade: 0,
@@ -51,6 +57,13 @@ export const Config = {
 			publishNewStory: 'Publish a new story',
 			updateStories: 'Update stories (coming soon)',
 			deleteStories: 'Delete stories',
+			publishStory: {
+				textareaPlaceholder: 'Type something...',
+				imagePlaceholder: 'Image URL',
+				titlePlaceholder: 'Title',
+				publish: 'Publish',
+				preview: 'Preview (Coming soon)',
+			},
 		},
 		articles: {
 			writtenBy: 'Written by',
