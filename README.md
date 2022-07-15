@@ -15,7 +15,7 @@ For now, this ressource is in MVP. Following features will be implemented in the
 - [ ] Live form validation
 - [ ] Image URL validation
 - [ ] Update stories
-- [ } Preview story before publishing
+- [ ] Preview story before publishing
 - [x] Input sanitization
 
 Feel free to report bugs or improvements and they'll be looked at.
