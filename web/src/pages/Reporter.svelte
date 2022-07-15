@@ -15,6 +15,10 @@
 	const reporterPermissions = Config.reporter.find(
 		(permissions: IReporterLevels) => permissions.grade === reporterLevel
 	) as IReporterLevels;
+
+	// function closePublishAccordion(): void {
+	// 	document.querySelector('.publishStory')?.classList.remove('active');
+	// }
 </script>
 
 <div class="pa-4">
@@ -25,12 +29,15 @@
 		<div class="mt-2">
 			<ExpansionPanels multiple>
 				{#if reporterPermissions.canPublish}
-					<ExpansionPanel>
+					<ExpansionPanel class="publishStory">
 						<span slot="header" class="pt-1"
 							><Icon path={mdiPencil} class="mr-2" />{Config.text
 								.reporterActions.publishNewStory}</span
 						>
-						<Create />
+						<Create
+							closePublishAccordion={() =>
+								closePublishAccordion()}
+						/>
 					</ExpansionPanel>
 				{/if}
 				{#if reporterPermissions.canEdit}

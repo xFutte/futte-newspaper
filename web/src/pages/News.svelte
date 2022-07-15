@@ -13,10 +13,10 @@
 	let body: HTMLDivElement | null;
 	let selectedStory: number = 0;
 
-	let storyTitle: string;
-	let storyImage: string;
-	let storyPublisher: string;
-	let storyDate: string;
+	let storyTitle: string | undefined;
+	let storyImage: string | undefined;
+	let storyPublisher: string | undefined;
+	let storyDate: string | undefined;
 
 	function updateMainStory(id: number): void {
 		selectedStory = id;
@@ -134,14 +134,6 @@
 	.latest {
 		height: 895px;
 		overflow: auto;
-	}
-
-	.previous {
-		flex: 1;
-	}
-
-	.latest {
-		width: 65%;
 
 		scrollbar-width: thin;
 		scrollbar-color: $scrollbar-thumb-color $scrollbar-background-color;
@@ -159,6 +151,14 @@
 			border-radius: 6px;
 			border: 3px solid $scrollbar-background-color;
 		}
+	}
+
+	.previous {
+		flex: 1;
+	}
+
+	.latest {
+		width: 65%;
 	}
 
 	.main_article_image {
