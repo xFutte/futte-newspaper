@@ -1,6 +1,6 @@
 # qb-news
 
-This standalone resource will add a newspaper functionality to your beautiful QBCore Fivem server.
+This standalone resource will add a newspaper functionality to your beautiful QBCore FiveM server.
 
 ### Preview
 | Opening newspaper | Reporter actions | Buying newspaper |
