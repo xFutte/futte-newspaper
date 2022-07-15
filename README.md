@@ -1,4 +1,4 @@
-# qb-news
+# qb-newspaper
 
 This standalone resource will add a newspaper functionality to your beautiful QBCore FiveM server.
 
