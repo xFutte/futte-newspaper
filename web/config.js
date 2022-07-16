@@ -1,5 +1,9 @@
 export const Config = {
 	newspaperTitle: 'QB-News',
+	tabs: {
+		showPrisonSentences: true,
+		showCityNews: true,
+	},
 	articles: {
 		showImage: true,
 		showTitle: true,
@@ -7,10 +11,7 @@ export const Config = {
 		showPublisher: true,
 		titleMaxLength: 60,
 	},
-	display: {
-		showPrisonSentences: true,
-		showCityNews: true,
-	},
+
 	publishArticleControls: [
 		['bold', 'italic', 'underline', 'strike'],
 		['blockquote', 'image'],
@@ -21,7 +22,7 @@ export const Config = {
 			grade: 0,
 			canPublish: true,
 			canEdit: true,
-			canDelete: false,
+			canDelete: true,
 		},
 		{
 			grade: 1,
@@ -59,10 +60,13 @@ export const Config = {
 			deleteStories: 'Delete stories',
 			publishStory: {
 				textareaPlaceholder: 'Type something...',
-				imagePlaceholder: 'Image URL',
-				titlePlaceholder: 'Title',
+				imagePlaceholder: 'Image URL (Optional)',
+				titlePlaceholder: 'Title (Required)',
 				publish: 'Publish',
 				preview: 'Preview (Coming soon)',
+				wrongImageFormat:
+					'Wrong image format. Either .jpg, .jpeg, .png. .webp, .avif, .gif, or .svg expected',
+				required: 'Required',
 			},
 		},
 		articles: {
