@@ -6,6 +6,7 @@
 	import { quill } from 'svelte-quill';
 	import type { Story } from '../../interfaces/story';
 	import { fetchNui } from '../../utils/fetchNui';
+	import { onMount } from 'svelte';
 
 	export let closePublishAccordion = () => {};
 
@@ -18,127 +19,125 @@
 		theme: 'snow',
 	};
 
-	const titleRules = [
-		(value: string) => !!value || 'Required',
-		(value: string) => value.length <= 25 || 'Max 25 characters',
-	];
-
+	let titleInput: HTMLInputElement | null;
+	let imageInput: HTMLInputElement | null;
 	let titleValue: string;
+	let imageValue: string;
+	let bodyValue: string | undefined;
 	let story: Story;
-	let content: StoryBody;
 
-	let imageError = '';
+	let validUrl: boolean = true;
+	let validBody: boolean = false;
+	let validTitle: boolean = false;
+
+	onMount(() => {
+		titleInput = document.querySelector('#title');
+		imageInput = document.querySelector('#image');
+	});
 
 	function publishArticle(): void {
-		const publishStory = document.querySelector('.publishStory');
-		const titleInput: HTMLInputElement | null =
-			document.querySelector('#title');
-		const imageInput: HTMLInputElement | null =
-			document.querySelector('#image');
-
-		titleValue = DOMPurify.sanitize(titleInput?.value as string)
-			? DOMPurify.sanitize(titleInput?.value as string)
-			: '';
-
-		const imageValue = isImage(
-			DOMPurify.sanitize(imageInput?.value as string)
-		)
-			? (imageInput?.value as string)
-			: '';
-
-		const bodyValue = DOMPurify.sanitize(content.html);
-		const dateValue = moment(new Date()).format('MMMM Do YYYY');
-
-		if (titleValue.length)
-			if (DOMPurify.isSupported) {
-				// Sanitize input and post
+		if (DOMPurify.isSupported) {
+			if (titleValue && bodyValue) {
 				story = {
 					type: 'news',
 					image: imageValue,
 					title: titleValue,
-					body: bodyValue,
-					date: dateValue,
+					body: bodyValue as string,
+					date: moment(new Date()).format('MMMM Do YYYY'),
 				};
 
 				fetchNui('publishStory', story);
 			}
-
-		// Make this work somehow..
-		// closePublishAccordion();
+		} else {
+			console.log('DOMPurify is not supported.');
+		}
 	}
+
+	// Make this work somehow..
+	// closePublishAccordion();
 
 	function isImage(url: string): boolean {
 		return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
 	}
 
 	function imageUrlCheck(e): void {
-		if (isImage(e.target.value)) {
-			return;
+		imageValue = DOMPurify.sanitize(e.target.value);
+
+		if (isImage(imageValue)) {
+			validUrl = true;
 		} else {
-			imageError = 'Wrong image format';
+			if (imageValue === '') {
+				validUrl = true;
+			} else {
+				validUrl = false;
+			}
 		}
 	}
 
-	let active = false;
-
-	function close() {
-		active = false;
+	function titleCheck(e): void {
+		titleValue = DOMPurify.sanitize(e.target.value);
+		validTitle = titleValue.length ? true : false;
 	}
 
-	function preview() {
-		active = true;
+	function updateBodyValue(e): void {
+		bodyValue = DOMPurify.sanitize(e.detail.html);
 
-		const container = document.querySelector('.preview-content');
-	}
+		// If everything gets deleted from the textarea, <p><br></p> will still be left. Reset the value to ''
+		if (bodyValue === '<p><br></p>') {
+			bodyValue = undefined;
+		}
 
-	interface StoryBody {
-		html: string;
-		text: string;
+		validBody = bodyValue?.length ? true : false;
 	}
 </script>
 
 <div class="pt-4 container">
 	<form id="form">
 		<TextField
-			counter={Config.articles.titleMaxLength}
-			maxlength={Config.articles.titleMaxLength}
-			on:input={(e) => (titleValue = e.target?.value)}
-			rules={titleRules}
+			on:change={(e) => titleCheck(e)}
+			on:input={(e) => titleCheck(e)}
+			on:keydown={(e) => titleCheck(e)}
 			id="title"
 			outlined
 			>{Config.text.reporterActions.publishStory
 				.titlePlaceholder}</TextField
 		>
 
-		<TextField on:change={(e) => imageUrlCheck(e)} id="image" outlined
+		<TextField
+			on:change={(e) => imageUrlCheck(e)}
+			on:input={(e) => imageUrlCheck(e)}
+			on:keydown={(e) => imageUrlCheck(e)}
+			id="image"
+			outlined
 			>{Config.text.reporterActions.publishStory
 				.imagePlaceholder}</TextField
 		>
+
+		<p class="error-text">
+			<small
+				>{#if !validUrl}
+					{Config.text.reporterActions.publishStory.wrongImageFormat}
+				{/if}</small
+			>
+		</p>
+
 		<div
 			class="editor mb-2"
 			use:quill={options}
-			on:text-change={(e) => (content = e.detail)}
+			on:text-change={(e) => updateBodyValue(e)}
 		/>
 		<Button
-			disabled={!content && !titleValue}
+			disabled={!validBody || !validTitle || !validUrl}
 			on:click={publishArticle}
 			class="green white-text"
 			>{Config.text.reporterActions.publishStory.publish}</Button
 		>
-		<Button disabled on:click={preview}
+		<Button disabled
 			>{Config.text.reporterActions.publishStory.preview}</Button
 		>
 	</form>
 </div>
 
-<!-- <Dialog persistent bind:active>
-	<div class="preview-content">
-
-	</div>
-
-	<Button on:click={publishArticle} class="green white-text">Publish</Button>
-	<Button on:click={close}>Back</Button>
-</Dialog> -->
 <style>
 	.container {
 		width: 100%;

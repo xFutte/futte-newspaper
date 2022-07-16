@@ -1,8 +1,12 @@
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-  height: 100vh;
+	height: 100vh;
+}
+
+.error-text {
+	color: red;
 }
