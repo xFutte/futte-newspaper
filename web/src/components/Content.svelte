@@ -27,10 +27,10 @@
 		<Tabs class="green-text" bind:value fixedTabs>
 			<div slot="tabs">
 				<Tab>{Config.text.tabs.newspaper}</Tab>
-				{#if Config.display.showPrisonSentences}<Tab disabled
+				{#if Config.tabs.showPrisonSentences}<Tab disabled
 						>{Config.text.tabs.prisonSentences}</Tab
 					>{/if}
-				{#if Config.display.showCityNews}<Tab disabled
+				{#if Config.tabs.showCityNews}<Tab disabled
 						>{Config.text.tabs.cityUpdates}</Tab
 					>{/if}
 				{#if isReporter == true}<Tab
