@@ -24,7 +24,7 @@ local function AddItemToNewsStand(storyType, paper, paperIcon, stands)
     })
 end
 
-AddItemToNewsStand('newspaper', 'Buy newspaper', 'fas fa-newspaper', NewsStands)
+AddItemToNewsStand('newspaper', Config.BuyNewspaperText, Config.BuyNewspaperIcon, NewsStands)
 
 RegisterNetEvent('newsstands:client:openNewspaper', function()
     QBCore.Functions.TriggerCallback('newsstands:server:getStories', function(data, isReporter, reporterLevel)

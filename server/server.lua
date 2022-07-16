@@ -36,14 +36,14 @@ RegisterNetEvent('newsstands:buy', function(type)
     local cash = Player.PlayerData.money['cash']
 
     if type then
-        if cash >= Config[type].price then
+        if cash >= Config.Price then
 
-            Player.Functions.RemoveMoney("cash", Config[type].price)
+            Player.Functions.RemoveMoney("cash", Config.Price)
             TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['newspaper'], "add")
             Player.Functions.AddItem(type, 1)
         else
-            TriggerClientEvent('QBCore:Notify', source,
-                '$' .. Config[type].price .. ' required for buying a ' .. Config[type].name, 'error')
+            TriggerClientEvent('QBCore:Notify', source, '$' .. Config.Price .. ' required for buying a newspaper',
+                'error')
         end
     end
 end)
