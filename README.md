@@ -27,12 +27,15 @@ Feel free to report bugs or improvements and they'll be looked at.
 
 ## Implementation
 
-1. Add following to your shared.lua file:
+1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node, you can download it on https://nodejs.org/en/download/.
+
+2. Add following to your shared.lua file:
 
 ```lua
 ['newspaper'] = {['name'] = 'newspaper', ['label'] = 'Newspaper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'newspaper.png', ['unique'] = false , ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Los Santos Newspaper'},
 ```
-2. Add the newspaper.png image in the root of the resource into your qb-inventory folder, where all the other images are located.
+3. Add the newspaper.png image in the root of the resource into your qb-inventory folder, where all the other images are located.
++
 ## Configuration
 
 1. There are quite a lot of configurations possible out-of-the-box with qb-news. This consists of two files: `config.js` and `config.lua`.
