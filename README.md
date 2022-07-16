@@ -12,8 +12,8 @@ For now, this ressource is in MVP. Following features will be implemented in the
 - [ ] Prison sentences
 - [ ] City news (release notes for city)
 - [ ] Action feedback
-- [ ] Live form validation
-- [ ] Image URL validation
+- [x] Live form validation
+- [x] Image URL validation
 - [ ] Update stories
 - [ ] Preview story before publishing
 - [x] Input sanitization
@@ -41,23 +41,29 @@ Feel free to report bugs or improvements and they'll be looked at.
 ```javscript
 export const Config = {
 	newspaperTitle: 'QB-News',
+	tabs: {
+		showPrisonSentences: true,
+		showCityNews: true,
+	},
 	articles: {
 		showImage: true,
 		showTitle: true,
 		showDate: true,
 		showPublisher: true,
+		titleMaxLength: 60,
 	},
-	display: {
-		showPrisonSentences: true,
-		showCityNews: true,
-	},
-	publishArticleControls: [['bold', 'italic', 'underline', 'strike']],
+
+	publishArticleControls: [
+		['bold', 'italic', 'underline', 'strike'],
+		['blockquote', 'image'],
+		[{ list: 'ordered' }, { list: 'bullet' }],
+	],
 	reporter: [
 		{
 			grade: 0,
 			canPublish: true,
 			canEdit: true,
-			canDelete: false,
+			canDelete: true,
 		},
 		{
 			grade: 1,
@@ -93,7 +99,16 @@ export const Config = {
 			publishNewStory: 'Publish a new story',
 			updateStories: 'Update stories (coming soon)',
 			deleteStories: 'Delete stories',
-			textareaPlaceholder: 'Type something...',
+			publishStory: {
+				textareaPlaceholder: 'Type something...',
+				imagePlaceholder: 'Image URL (Optional)',
+				titlePlaceholder: 'Title (Required)',
+				publish: 'Publish',
+				preview: 'Preview (Coming soon)',
+				wrongImageFormat:
+					'Wrong image format. Either .jpg, .jpeg, .png. .webp, .avif, .gif, or .svg expected',
+				required: 'Required',
+			},
 		},
 		articles: {
 			writtenBy: 'Written by',
