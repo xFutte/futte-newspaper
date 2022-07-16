@@ -63,15 +63,7 @@
 	function imageUrlCheck(e): void {
 		imageValue = DOMPurify.sanitize(e.target.value);
 
-		if (isImage(imageValue)) {
-			validUrl = true;
-		} else {
-			if (imageValue === '') {
-				validUrl = true;
-			} else {
-				validUrl = false;
-			}
-		}
+		validUrl = isImage(imageValue) || imageValue === '' ? true : false;
 	}
 
 	function titleCheck(e): void {
