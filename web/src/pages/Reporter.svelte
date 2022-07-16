@@ -34,10 +34,7 @@
 							><Icon path={mdiPencil} class="mr-2" />{Config.text
 								.reporterActions.publishNewStory}</span
 						>
-						<Create
-							closePublishAccordion={() =>
-								closePublishAccordion()}
-						/>
+						<Create />
 					</ExpansionPanel>
 				{/if}
 				{#if reporterPermissions.canEdit}
