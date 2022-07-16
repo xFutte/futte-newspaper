@@ -28,7 +28,7 @@ Feel free to report bugs or improvements and they'll be looked at.
 ## Implementation
 
 1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node, you can download it on https://nodejs.org/en/download/.'
-2. Run `npm run dev` if you want to develop on the resource or `run npm build` if you simply want to bundle the resource and use it.
+2. Run `npm run dev` if you want to develop on the resource or `run npm build` if you simply want to bundle the resource and use it. It is always a good idea to run `npm run build` when you're done custommizing it to compress the bundle.
 2. Add following to your shared.lua file:
 
 ```lua
