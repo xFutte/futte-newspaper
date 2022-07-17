@@ -27,8 +27,8 @@ Feel free to report bugs or improvements and they'll be looked at.
 
 ## Implementation
 
-1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node.js, you can download it on https://nodejs.org/en/download/.'
-2. Run `npm run dev` in ./web
+1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node.js you can [download it here](https://nodejs.org/en/download/).'
+2. Run `npm run dev` in ./web to compile the GUI. 
 3. Add the newspaper.png image in the root of the resource into your qb-inventory folder, where all the other images are located.
 4. Add following to your shared.lua file:
 
@@ -36,7 +36,7 @@ Feel free to report bugs or improvements and they'll be looked at.
 ['newspaper'] = {['name'] = 'newspaper', ['label'] = 'Newspaper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'newspaper.png', ['unique'] = false , ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Los Santos Newspaper'},
 ```
 
-:bulb: Tip: When you are done working with the resource run `npm run build` to minify the resource.
+:bulb: When you are done working with the resource run `npm run build` to minify and uglify the resource to decrease the resource size.
 
 ## Configuration
 
