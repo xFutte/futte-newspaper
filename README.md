@@ -14,7 +14,7 @@ For now, this ressource is in MVP. Following features will be implemented in the
 - [ ] Action feedback
 - [x] Live form validation
 - [x] Image URL validation
-- [ ] Update stories
+- [x] Update stories
 - [ ] Preview story before publishing
 - [x] Input sanitization
 
