@@ -42,7 +42,7 @@ Tip: When you are done working with the resource run `npm run build` to minify t
 
 1. There are quite a lot of configurations possible out-of-the-box with qb-news. This consists of two files: `config.js` and `config.lua`.
 
-**Config.js** (so far)
+**Config.js**
 ```javscript
 export const Config = {
 	newspaperTitle: 'QB-News',
@@ -102,13 +102,15 @@ export const Config = {
 			title: 'Reporter actions',
 			noPermissions: 'You have no reporter permissions.',
 			publishNewStory: 'Publish a new story',
-			updateStories: 'Update stories (coming soon)',
+			updateStories: 'Update stories',
 			deleteStories: 'Delete stories',
 			publishStory: {
-				textareaPlaceholder: 'Type something...',
+				textareaPlaceholder: 'Article content..',
 				imagePlaceholder: 'Image URL (Optional)',
 				titlePlaceholder: 'Title (Required)',
 				publish: 'Publish',
+				update: 'Update',
+				discardChanges: 'Discard changes',
 				preview: 'Preview (Coming soon)',
 				wrongImageFormat:
 					'Wrong image format. Either .jpg, .jpeg, .png. .webp, .avif, .gif, or .svg expected',
@@ -122,7 +124,6 @@ export const Config = {
 		},
 	},
 };
-
 ```
 
 **Config.lua**
