@@ -27,7 +27,7 @@ Feel free to report bugs or improvements and they'll be looked at.
 
 ## Implementation
 
-1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node, you can download it on https://nodejs.org/en/download/.'
+1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node.js, you can download it on https://nodejs.org/en/download/.'
 2. Run `npm run dev` in ./web
 2. Add following to your shared.lua file:
 
