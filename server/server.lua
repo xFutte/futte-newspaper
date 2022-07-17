@@ -48,6 +48,33 @@ RegisterNetEvent('newsstands:buy', function(type)
     end
 end)
 
+RegisterNetEvent('newsstands:server:updateStory', function(data)
+    local Player = QBCore.Functions.GetPlayer(source)
+    local src = source
+    local knownPlayers = {}
+
+    knownPlayers[source] = true;
+
+    if Player.PlayerData.job['name'] == 'reporter' then
+        if not knownPlayers[source] then
+            -- Yeet the player 
+            knownPlayers[source] = nil;
+
+            return
+        else
+            exports.oxmysql:insert('UPDATE newsstands SET title = ?, body = ?, image = ? WHERE id = ?',
+                {data.title, data.body, data.image, data.id})
+
+            TriggerClientEvent('QBCore:Notify', src, 'Story has been updated!', 'success')
+        end
+    else
+        TriggerClientEvent('QBCore:Notify', src, 'You need to be a reporter to update a story', 'success')
+    end
+
+    knownPlayers[source] = nil;
+
+end)
+
 RegisterNetEvent('newsstands:server:publishStory', function(data)
     local Player = QBCore.Functions.GetPlayer(source)
     local src = source

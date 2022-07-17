@@ -56,13 +56,15 @@ export const Config = {
 			title: 'Reporter actions',
 			noPermissions: 'You have no reporter permissions.',
 			publishNewStory: 'Publish a new story',
-			updateStories: 'Update stories (coming soon)',
+			updateStories: 'Update stories',
 			deleteStories: 'Delete stories',
 			publishStory: {
-				textareaPlaceholder: 'Type something...',
+				textareaPlaceholder: 'Article content..',
 				imagePlaceholder: 'Image URL (Optional)',
 				titlePlaceholder: 'Title (Required)',
 				publish: 'Publish',
+				update: 'Update',
+				discardChanges: 'Discard changes',
 				preview: 'Preview (Coming soon)',
 				wrongImageFormat:
 					'Wrong image format. Either .jpg, .jpeg, .png. .webp, .avif, .gif, or .svg expected',

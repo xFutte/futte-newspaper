@@ -8,7 +8,12 @@
 	import { fetchNui } from '../../utils/fetchNui';
 	import { onMount } from 'svelte';
 
-	export let closePublishAccordion = () => {};
+	export let updateContext;
+	export let stories: Array<Story>;
+	export let updateId;
+	export let active;
+
+	export let close = () => {};
 
 	const options = {
 		modules: {
@@ -21,9 +26,10 @@
 
 	let titleInput: HTMLInputElement | null;
 	let imageInput: HTMLInputElement | null;
-	let titleValue: string;
-	let imageValue: string;
-	let bodyValue: string | undefined;
+	let bodyInput: HTMLDivElement | null;
+	let titleValue: string = '';
+	let imageValue: string = '';
+	let bodyValue: string | undefined = '';
 	let story: Story;
 
 	let validUrl: boolean = true;
@@ -33,12 +39,40 @@
 	onMount(() => {
 		titleInput = document.querySelector('#title');
 		imageInput = document.querySelector('#image');
+		bodyInput = document.querySelector('.ql-editor');
+
+		if (updateContext === true) {
+			addStoryToForm(updateId);
+		}
 	});
+
+	function addStoryToForm(id: number) {
+		const story = stories.find((story: Story) => story.id === id);
+
+		if (story && titleInput && imageInput && bodyInput) {
+			titleInput.value = story.title;
+			imageInput.value = story.image;
+			bodyInput.innerHTML = story.body;
+
+			titleValue = story.title;
+			imageValue = story.image;
+			bodyValue = story.body;
+
+			validTitle = true;
+			validBody = true;
+			validUrl = true;
+
+			titleInput.focus();
+		} else {
+			console.log('Could not find story to update');
+		}
+	}
 
 	function publishArticle(): void {
 		if (DOMPurify.isSupported) {
 			if (titleValue && bodyValue) {
 				story = {
+					id: updateId,
 					type: 'news',
 					image: imageValue,
 					title: titleValue,
@@ -46,7 +80,12 @@
 					date: moment(new Date()).format('MMMM Do YYYY'),
 				};
 
-				fetchNui('publishStory', story);
+				if (updateContext === true) {
+					fetchNui('updateStory', story);
+					close();
+				} else {
+					fetchNui('publishStory', story);
+				}
 			}
 		} else {
 			console.log('DOMPurify is not supported.');
@@ -71,7 +110,7 @@
 		validTitle = titleValue.length ? true : false;
 	}
 
-	function updateBodyValue(e): void {
+	function correctBodyValue(e): void {
 		bodyValue = DOMPurify.sanitize(e.detail.html);
 
 		// If everything gets deleted from the textarea, <p><br></p> will still be left. Reset the value to ''
@@ -84,11 +123,16 @@
 </script>
 
 <div class="pt-4 container">
+	<h4>
+		{#if updateContext == true}Update article{:else}Publish articles{/if}
+	</h4>
+	<br />
 	<form id="form">
 		<TextField
 			on:change={(e) => titleCheck(e)}
 			on:input={(e) => titleCheck(e)}
 			on:keydown={(e) => titleCheck(e)}
+			placeholder="Title"
 			id="title"
 			outlined
 			>{Config.text.reporterActions.publishStory
@@ -99,6 +143,7 @@
 			on:change={(e) => imageUrlCheck(e)}
 			on:input={(e) => imageUrlCheck(e)}
 			on:keydown={(e) => imageUrlCheck(e)}
+			placeholder="Image URL"
 			id="image"
 			outlined
 			>{Config.text.reporterActions.publishStory
@@ -116,23 +161,32 @@
 		<div
 			class="editor mb-2"
 			use:quill={options}
-			on:text-change={(e) => updateBodyValue(e)}
+			on:text-change={(e) => correctBodyValue(e)}
 		/>
 		<Button
 			disabled={!validBody || !validTitle || !validUrl}
 			on:click={publishArticle}
 			class="green white-text"
-			>{Config.text.reporterActions.publishStory.publish}</Button
+			>{#if updateContext}{Config.text.reporterActions.publishStory
+					.update}{:else}{Config.text.reporterActions.publishStory
+					.publish}{/if}</Button
 		>
-		<Button disabled
-			>{Config.text.reporterActions.publishStory.preview}</Button
-		>
+
+		{#if !updateContext}<Button disabled
+				>{Config.text.reporterActions.publishStory.preview}</Button
+			>
+		{/if}
+		{#if updateContext}<Button on:click={close}
+				>{Config.text.reporterActions.publishStory
+					.discardChanges}</Button
+			>{/if}
 	</form>
 </div>
 
 <style>
 	.container {
 		width: 100%;
+		padding: 20px;
 	}
 
 	.editor {

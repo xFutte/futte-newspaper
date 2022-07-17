@@ -41,8 +41,10 @@ end)
 
 RegisterNUICallback('publishStory', function(data)
     TriggerServerEvent('newsstands:server:publishStory', data)
+end)
 
-    TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+RegisterNUICallback('updateStory', function(data)
+    TriggerServerEvent('newsstands:server:updateStory', data)
 end)
 
 RegisterNUICallback('deleteStory', function(data)

@@ -4,6 +4,7 @@
 
 	import { mdiPencil, mdiFileEdit, mdiDeleteForever } from '@mdi/js';
 	import Delete from '../components/reporter/Delete.svelte';
+	import Update from '../components/reporter/Update.svelte';
 	import { Config } from '../../config';
 
 	import type { Story } from '../interfaces/story';
@@ -12,13 +13,13 @@
 	export let stories: Array<Story>;
 	export let reporterLevel: number;
 
+	let updateContext = false;
+	let updateId = undefined;
+	let active = false;
+
 	const reporterPermissions = Config.reporter.find(
 		(permissions: IReporterLevels) => permissions.grade === reporterLevel
 	) as IReporterLevels;
-
-	// function closePublishAccordion(): void {
-	// 	document.querySelector('.publishStory')?.classList.remove('active');
-	// }
 </script>
 
 <div class="pa-4">
@@ -34,18 +35,16 @@
 							><Icon path={mdiPencil} class="mr-2" />{Config.text
 								.reporterActions.publishNewStory}</span
 						>
-						<Create />
+						<Create {updateContext} {stories} {updateId} {active} />
 					</ExpansionPanel>
 				{/if}
 				{#if reporterPermissions.canEdit}
-					<ExpansionPanel disabled>
+					<ExpansionPanel>
 						<span slot="header" class="pt-1"
 							><Icon path={mdiFileEdit} class="mr-2" />{Config
 								.text.reporterActions.updateStories}</span
 						>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-						Repellat amet natus obcaecati molestiae quas mollitia error
-						modi atque aliquam esse.
+						<Update {stories} />
 					</ExpansionPanel>
 				{/if}
 				{#if reporterPermissions.canDelete}
