@@ -17,6 +17,7 @@ This resource is still in active development. Below features will be/have been i
 - [x] Update stories
 - [ ] Preview story before publishing
 - [x] Input sanitization
+- [ ] Hide news image if it returns 404 after request
 
 Feel free to report bugs or improvements and they'll be looked at.
 
@@ -40,7 +41,7 @@ Feel free to report bugs or improvements and they'll be looked at.
 
 ## Configuration
 
-There are quite a lot of configurations possible out-of-the-box with qb-news. This consists of two files: `config.js` and `config.lua`.
+There are quite a lot of configurations possible out-of-the-box with qb-newspaper. This consists of two files: `config.js` and `config.lua`.
 
 **Config.js**
 ```javscript
