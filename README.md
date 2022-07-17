@@ -7,7 +7,7 @@ This standalone resource will add a newspaper functionality to your beautiful QB
 |--------------------| --------------- | -----------------|
 | ![Opening newspaper](https://i.imgur.com/zEXI3oh.png) | ![Opening newspaper](https://i.imgur.com/68pjuKY.png) | ![Buying newspaper](https://i.imgur.com/ounIQJY.png) |
 
-For now, this ressource is in MVP. Following features will be implemented in the near future:
+This resource is still in active development. Below features will be/have been implemented.
 
 - [ ] Prison sentences
 - [ ] City news (release notes for city)
@@ -29,18 +29,18 @@ Feel free to report bugs or improvements and they'll be looked at.
 
 1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node.js, you can download it on https://nodejs.org/en/download/.'
 2. Run `npm run dev` in ./web
-2. Add following to your shared.lua file:
+3. Add the newspaper.png image in the root of the resource into your qb-inventory folder, where all the other images are located.
+4. Add following to your shared.lua file:
 
 ```lua
 ['newspaper'] = {['name'] = 'newspaper', ['label'] = 'Newspaper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'newspaper.png', ['unique'] = false , ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Los Santos Newspaper'},
 ```
-4. Add the newspaper.png image in the root of the resource into your qb-inventory folder, where all the other images are located.
 
-Tip: When you are done working with the resource run `npm run build` to minify the resource.
+:bulb: Tip: When you are done working with the resource run `npm run build` to minify the resource.
 
 ## Configuration
 
-1. There are quite a lot of configurations possible out-of-the-box with qb-news. This consists of two files: `config.js` and `config.lua`.
+There are quite a lot of configurations possible out-of-the-box with qb-news. This consists of two files: `config.js` and `config.lua`.
 
 **Config.js**
 ```javscript
