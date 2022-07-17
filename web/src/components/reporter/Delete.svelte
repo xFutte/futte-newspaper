@@ -18,15 +18,6 @@
 	import { mdiDeleteForever } from '@mdi/js';
 	import { fetchNui } from '../../utils/fetchNui';
 
-	interface Story {
-		id: number;
-		type: string;
-		image: string;
-		header: string;
-		body: string;
-		date: string;
-	}
-
 	// Stories will be provided by the content component
 	export let stories;
 
