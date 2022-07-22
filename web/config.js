@@ -1,5 +1,5 @@
 export const Config = {
-	newspaperTitle: 'QB-News',
+	newspaperTitle: 'Los Santos Newspaper',
 	tabs: {
 		showPrisonSentences: true,
 		showCityNews: true,
@@ -17,6 +17,7 @@ export const Config = {
 		['blockquote', 'image'],
 		[{ list: 'ordered' }, { list: 'bullet' }],
 	],
+	// Remember to align this with QBShared.Jobs
 	reporter: [
 		{
 			grade: 0,
@@ -34,7 +35,7 @@ export const Config = {
 			grade: 2,
 			canPublish: true,
 			canEdit: true,
-			canDelete: true,
+			canDelete: false,
 		},
 		{
 			grade: 3,
@@ -43,14 +44,23 @@ export const Config = {
 			canDelete: true,
 		},
 	],
+	prisonSentences: {
+		imageUrl:
+			'https://cdn.realsport101.com/images/ncavvykf/gfinityesports/94d9c2c9e240b6b4e792a705ead0a0d188c1af47-808x455.png?w=686&h=386&auto=format',
+		imageCaption: 'Bolingbroke Penitentiary',
+	},
 	text: {
 		tabs: {
 			newspaper: 'Newspaper',
-			prisonSentences: 'Prison sentences (coming soon)',
+			prisonSentences: 'Prison sentences',
 			cityUpdates: 'City updates (coming soon)',
 			reporterActions: 'Reporter actions',
 		},
-		prisonSentences: {},
+		prisonSentences: {
+			title: 'Prison sentences',
+			noSentencesAvailable: 'No sentences available',
+			randomRoasts: ['a', 'b', 'c', 'd'],
+		},
 		cityUpdates: {},
 		reporterActions: {
 			title: 'Reporter actions',
