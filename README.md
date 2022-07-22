@@ -46,7 +46,7 @@ There are quite a lot of configurations possible out-of-the-box with qb-newspape
 **Config.js**
 ```javscript
 export const Config = {
-	newspaperTitle: 'QB-News',
+	newspaperTitle: 'Los Santos Newspaper',
 	tabs: {
 		showPrisonSentences: true,
 		showCityNews: true,
@@ -64,6 +64,7 @@ export const Config = {
 		['blockquote', 'image'],
 		[{ list: 'ordered' }, { list: 'bullet' }],
 	],
+	// Remember to align this with QBShared.Jobs
 	reporter: [
 		{
 			grade: 0,
@@ -81,7 +82,7 @@ export const Config = {
 			grade: 2,
 			canPublish: true,
 			canEdit: true,
-			canDelete: true,
+			canDelete: false,
 		},
 		{
 			grade: 3,
@@ -90,14 +91,22 @@ export const Config = {
 			canDelete: true,
 		},
 	],
+	prisonSentences: {
+		imageUrl:
+			'https://cdn.realsport101.com/images/ncavvykf/gfinityesports/94d9c2c9e240b6b4e792a705ead0a0d188c1af47-808x455.png?w=686&h=386&auto=format',
+		imageCaption: 'Bolingbroke Penitentiary',
+	},
 	text: {
 		tabs: {
 			newspaper: 'Newspaper',
-			prisonSentences: 'Prison sentences (coming soon)',
+			prisonSentences: 'Prison sentences',
 			cityUpdates: 'City updates (coming soon)',
 			reporterActions: 'Reporter actions',
 		},
-		prisonSentences: {},
+		prisonSentences: {
+			title: 'Prison sentences',
+			noSentencesAvailable: 'No sentences available',
+		},
 		cityUpdates: {},
 		reporterActions: {
 			title: 'Reporter actions',
@@ -125,6 +134,7 @@ export const Config = {
 		},
 	},
 };
+
 ```
 
 **Config.lua**
@@ -132,5 +142,7 @@ export const Config = {
 Config.BuyNewspaperText = 'Buy newspaper' -- Text shown with qb-target
 Config.BuyNewspaperIcon = 'fas fa-newspaper' -- Icon shown with qb-target
 Config.Price = 100 -- Price of buying the newspaper
+Config.AmountOfNews = 10 -- Amount of news to be fetched from the database
+Config.AmountOfSentences = 10 -- Amount of prison sentences to be fetched from the database
 ```
 
