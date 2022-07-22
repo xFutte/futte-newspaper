@@ -44,7 +44,7 @@ Feel free to report bugs or improvements and they'll be looked at.
 There are quite a lot of configurations possible out-of-the-box with qb-newspaper. This consists of two files: `config.js` and `config.lua`.
 
 **Config.js**
-```javscript
+```js
 export const Config = {
 	newspaperTitle: 'Los Santos Newspaper',
 	tabs: {
