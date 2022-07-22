@@ -9,7 +9,7 @@ This standalone resource will add a newspaper functionality to your beautiful QB
 
 This resource is still in active development. Below features will be/have been implemented.
 
-- [ ] Prison sentences (In progress)
+- [x] Prison sentences
 - [ ] City news (release notes for city)
 - [ ] Action feedback
 - [x] Live form validation
