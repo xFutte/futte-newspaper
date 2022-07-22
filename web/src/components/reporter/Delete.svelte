@@ -61,7 +61,7 @@
 		</DataTableHead>
 		<DataTableBody>
 			{#each stories as story}
-				<DataTableRow>
+				<DataTableRow id={story.id}>
 					<DataTableCell>{story.id}</DataTableCell>
 					<DataTableCell>{story.title}</DataTableCell>
 					<DataTableCell numeric>{story.date}</DataTableCell>
