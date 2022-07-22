@@ -15,3 +15,5 @@ client_script {'client/**/*', '@PolyZone/client.lua', '@PolyZone/EntityZone.lua'
 server_script "server/**/*"
 
 files {'web/public/index.html', 'web/public/**/*'}
+
+server_exports {'CreateJailStory'}
