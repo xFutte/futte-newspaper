@@ -7,16 +7,17 @@ This standalone resource will add a newspaper functionality to your beautiful QB
 |--------------------| --------------- | -----------------|
 | ![Opening newspaper](https://i.imgur.com/zEXI3oh.png) | ![Opening newspaper](https://i.imgur.com/68pjuKY.png) | ![Buying newspaper](https://i.imgur.com/ounIQJY.png) |
 
-For now, this ressource is in MVP. Following features will be implemented in the near future:
+This resource is still in active development. Below features will be/have been implemented.
 
-- [ ] Prison sentences
+- [ ] Prison sentences (In progress)
 - [ ] City news (release notes for city)
 - [ ] Action feedback
 - [x] Live form validation
 - [x] Image URL validation
-- [ ] Update stories
+- [x] Update stories
 - [ ] Preview story before publishing
 - [x] Input sanitization
+- [ ] Hide news image if it returns 404 after request
 
 Feel free to report bugs or improvements and they'll be looked at.
 
@@ -27,22 +28,22 @@ Feel free to report bugs or improvements and they'll be looked at.
 
 ## Implementation
 
-1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node, you can download it on https://nodejs.org/en/download/.'
-2. Run `npm run dev` in ./web
-2. Add following to your shared.lua file:
+1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node.js you can [download it here](https://nodejs.org/en/download/).'
+2. Run `npm run dev` in ./web to compile the GUI. 
+3. Add the newspaper.png image in the root of the resource into your qb-inventory folder, where all the other images are located.
+4. Add following to your shared.lua file:
 
 ```lua
 ['newspaper'] = {['name'] = 'newspaper', ['label'] = 'Newspaper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'newspaper.png', ['unique'] = false , ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Los Santos Newspaper'},
 ```
-4. Add the newspaper.png image in the root of the resource into your qb-inventory folder, where all the other images are located.
 
-Tip: When you are done working with the resource run `npm run build` to minify the resource.
+:bulb: When you are done working with the resource run `npm run build` to minify and uglify the resource to decrease the resource size.
 
 ## Configuration
 
-1. There are quite a lot of configurations possible out-of-the-box with qb-news. This consists of two files: `config.js` and `config.lua`.
+There are quite a lot of configurations possible out-of-the-box with qb-newspaper. This consists of two files: `config.js` and `config.lua`.
 
-**Config.js** (so far)
+**Config.js**
 ```javscript
 export const Config = {
 	newspaperTitle: 'QB-News',
@@ -102,13 +103,15 @@ export const Config = {
 			title: 'Reporter actions',
 			noPermissions: 'You have no reporter permissions.',
 			publishNewStory: 'Publish a new story',
-			updateStories: 'Update stories (coming soon)',
+			updateStories: 'Update stories',
 			deleteStories: 'Delete stories',
 			publishStory: {
-				textareaPlaceholder: 'Type something...',
+				textareaPlaceholder: 'Article content..',
 				imagePlaceholder: 'Image URL (Optional)',
 				titlePlaceholder: 'Title (Required)',
 				publish: 'Publish',
+				update: 'Update',
+				discardChanges: 'Discard changes',
 				preview: 'Preview (Coming soon)',
 				wrongImageFormat:
 					'Wrong image format. Either .jpg, .jpeg, .png. .webp, .avif, .gif, or .svg expected',
@@ -122,7 +125,6 @@ export const Config = {
 		},
 	},
 };
-
 ```
 
 **Config.lua**
