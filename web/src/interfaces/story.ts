@@ -1,4 +1,5 @@
 export interface Story {
+	// For stories
 	id?: number;
 	type: string;
 	image: string;
@@ -6,4 +7,7 @@ export interface Story {
 	body: string;
 	date: string;
 	publisher?: string;
+	// For prison sentences
+	time?: string;
+	name?: string;
 }
