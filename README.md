@@ -10,7 +10,6 @@ This standalone resource will add a newspaper functionality to your beautiful QB
 This resource is still in active development. Below features will be/have been implemented.
 
 - [x] Prison sentences
-- [ ] City news (release notes for city)
 - [ ] Action feedback
 - [x] Live form validation
 - [x] Image URL validation
@@ -18,6 +17,10 @@ This resource is still in active development. Below features will be/have been i
 - [ ] Preview story before publishing
 - [x] Input sanitization
 - [ ] Hide news image if it returns 404 after request
+
+
+Maybe future implementations
+- [ ] City news (release notes for city)
 
 Feel free to report bugs or improvements and they'll be looked at.
 
