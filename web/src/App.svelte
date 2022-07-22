@@ -3,35 +3,37 @@
 	import VisibilityProvider from './providers/VisibilityProvider.svelte';
 	import { MaterialApp } from 'svelte-materialify';
 	import Content from './components/Content.svelte';
-	import type { Story } from './interfaces/story';
 	import moment from 'moment';
+	import { setContext } from 'svelte';
+	import type { INewspaperData } from './interfaces/INewspaperData';
+	import type { ISentence } from './interfaces/ISentence';
+	import type { Story } from './interfaces/story';
 
 	let stories: Array<Story>;
 	let reporterLevel: number;
+	let reporterOnDuty: boolean;
 	let isReporter: boolean;
+	let sentences: Array<ISentence>;
 
 	window.addEventListener('message', (event) => {
-		const data = event.data;
+		const data: INewspaperData = event.data;
 
 		isReporter = data.isReporter;
 		reporterLevel = data.reporterLevel;
+		reporterOnDuty = data.reporterOnDuty;
 
-		if (!data.stories.length) {
-			// Placeholder story if none is available in the database - should be updated before use of resource
-			stories = [
-				{
-					id: 0,
-					title: 'Welcome to qb-newsstands',
-					body: "<p>qb-newsstands is a standalone ressource for FiveM. It has the following dependencies:</p><p><ul><li>qb-target</li><li>oxmysql</li></ul></p><p>I hope you'll enjoy the resource. Feel free to open issues if you find a bug/wish new functionality.</p><p>- xFutte</p>",
-					image: 'https://w0.peakpx.com/wallpaper/131/302/HD-wallpaper-grand-theft-auto-5-gta-v-grand-theft-auto-v-open-world-gaming-video-game-game-gta-5.jpg',
-					date: moment().format('MMMM Do YYYY'),
-					type: 'news',
-					publisher: 'xFutte @ Github',
-				},
-			];
-		} else {
-			stories = data.stories;
-		}
+		const placeholderStory = {
+			id: 0,
+			title: 'Welcome to qb-newsstands',
+			body: "<p>qb-newsstands is a standalone ressource for FiveM. It has the following dependencies:</p><p><ul><li>qb-target</li><li>oxmysql</li></ul></p><p>I hope you'll enjoy the resource. Feel free to open issues if you find a bug/wish new functionality.</p><p>- xFutte</p>",
+			image: 'https://w0.peakpx.com/wallpaper/131/302/HD-wallpaper-grand-theft-auto-5-gta-v-grand-theft-auto-v-open-world-gaming-video-game-game-gta-5.jpg',
+			date: moment().format('MMMM Do YYYY'),
+			type: 'news',
+			publisher: 'xFutte @ Github',
+		};
+
+		stories = data.stories.length ? data.stories : [placeholderStory];
+		sentences = data.sentences.length ? data.sentences : [];
 
 		// Show the newspaper GUI
 		visibility.set(true);
@@ -45,7 +47,7 @@
 <main class="container">
 	<VisibilityProvider>
 		<MaterialApp>
-			<Content {stories} {isReporter} {reporterLevel} />
+			<Content {stories} {isReporter} {reporterLevel} {reporterOnDuty} {sentences} />
 		</MaterialApp>
 	</VisibilityProvider>
 </main>
