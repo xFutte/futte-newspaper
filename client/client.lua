@@ -27,13 +27,15 @@ end
 AddItemToNewsStand('newspaper', Config.BuyNewspaperText, Config.BuyNewspaperIcon, NewsStands)
 
 RegisterNetEvent('newsstands:client:openNewspaper', function()
-    QBCore.Functions.TriggerCallback('newsstands:server:getStories', function(data, isReporter, reporterLevel)
+    QBCore.Functions.TriggerCallback('newsstands:server:getStories', function(news, jail, isReporter, reporterLevel, reporterOnDuty)
         SendNUIMessage({
-            stories = data,
+            stories = news,
+            sentences = jail,
             isReporter = isReporter,
-            reporterLevel = reporterLevel
+            reporterLevel = reporterLevel,
+            reporterOnDuty = reporterOnDuty,
         })
-    end, 'news')
+    end)
 
     TriggerEvent('animations:client:EmoteCommandStart', {"clipboard"})
     SetNuiFocus(true, true)
