@@ -80,10 +80,11 @@
 	{#if stories.length > 0}
 		<div class="latest pa-4">
 			{#if Config.articles.showImage}
-				<div class="main_article_image">
+				{#if storyImage}<div class="main_article_image">
 					<!-- svelte-ignore a11y-img-redundant-alt -->
 					<img src={storyImage} alt="Story image" />
 				</div>
+				{/if}
 			{/if}
 
 			{#if Config.articles.showTitle}
