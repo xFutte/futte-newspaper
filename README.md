@@ -31,7 +31,7 @@ Feel free to report bugs or improvements and they'll be looked at.
 1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node.js you can [download it here](https://nodejs.org/en/download/).'
 2. Run `npm run dev` in ./web to compile the GUI.
 3. Add `exports['newsstands']:CreateJailStory(name, time)` into the `JailPlayer` server event where it makes sense.
-4. Add the newspaper.png image in the root of the resource into your qb-inventory folder, where all the other images are located.
+4. Add the newspaper.png image into your qb-inventory folder, where all the other images are located (located in the root of the repo).
 5. Add following to your shared.lua file:
 
 ```lua
