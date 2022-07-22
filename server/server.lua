@@ -1,20 +1,33 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
-QBCore.Functions.CreateCallback('newsstands:server:getStories', function(source, cb, storyType)
+function CreateJailStory(name, time)
+    exports.oxmysql:execute(
+        'INSERT INTO newsstands (story_type, jailed_player, jailed_time, date) VALUES (?, ?, ?, CURRENT_TIMESTAMP)',
+        {'jail', name, time})
+end
+
+QBCore.Functions.CreateCallback('newsstands:server:getStories', function(source, cb)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     local isReporter = false
     local reporterLevel = nil
-    local amountOfNews = Config.amountOfNews or 10
+    local amountOfNews = Config.AmountOfNews or 10
+    local amountOfSentences = Config.AmountOfSentences or 10
+
+    local reporterOnDuty = Player.PlayerData.job['onduty']
 
     if Player.PlayerData.job['name'] == 'reporter' then
         isReporter = true
         reporterLevel = Player.PlayerData.job.grade['level']
     end
 
-    local data = exports.oxmysql:executeSync("SELECT * FROM newsstands WHERE story_type = ? ORDER BY id DESC LIMIT " ..
-                                                 amountOfNews .. "", {storyType})
-    cb(data, isReporter, reporterLevel)
+    local news = exports.oxmysql:executeSync("SELECT * FROM newsstands WHERE story_type = ? ORDER BY id DESC LIMIT " ..
+                                                 amountOfNews .. "", {'news'})
+
+    local sentences = exports.oxmysql:executeSync(
+        "SELECT * FROM newsstands WHERE story_type = ? ORDER BY id DESC LIMIT " .. amountOfNews .. "", {'jail'})
+
+    cb(news, sentences, isReporter, reporterLevel, reporterOnDuty)
 
     reporterLevel = nil
 end)
