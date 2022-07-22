@@ -12,11 +12,11 @@
 
 	export let stories: Array<Story>;
 	export let reporterLevel: number;
+	export let isReporter: boolean;
 
 	let updateContext = false;
 	let updateId = undefined;
 	let active = false;
-
 	const reporterPermissions = Config.reporter.find(
 		(permissions: IReporterLevels) => permissions.grade === reporterLevel
 	) as IReporterLevels;
@@ -24,7 +24,7 @@
 
 <div class="pa-4">
 	<h4>{Config.text.reporterActions.title}</h4>
-	{#if !reporterPermissions.canPublish && !reporterPermissions.canEdit && !reporterPermissions.canDelete}
+	{#if !isReporter || (!reporterPermissions.canPublish && !reporterPermissions.canEdit && !reporterPermissions.canDelete)}
 		<p>{Config.text.reporterActions.noPermissions}</p>
 	{:else}
 		<div class="mt-2">
