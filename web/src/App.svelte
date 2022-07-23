@@ -4,7 +4,6 @@
 	import { MaterialApp } from 'svelte-materialify';
 	import Content from './components/Content.svelte';
 	import moment from 'moment';
-	import { setContext } from 'svelte';
 	import type { INewspaperData } from './interfaces/INewspaperData';
 	import type { ISentence } from './interfaces/ISentence';
 	import type { Story } from './interfaces/story';
