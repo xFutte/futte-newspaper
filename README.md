@@ -14,7 +14,7 @@ The resource supports a lot of customization. See everything in the [configurati
 
 ## Preview
 ![Opening newspaper](https://i.imgur.com/9vEGenM.png)
-<a href="https://imgur.com/a/Sr1gQ4u" target="_blank">More screenshots</a>
+[More screenshots](https://imgur.com/a/Sr1gQ4u)
 
 ## Dependencies
 - qb-target
