@@ -1,30 +1,22 @@
 # qb-newspaper
 
-This standalone resource will add a newspaper functionality to your beautiful QBCore FiveM server.
+This standalone resource will add a newspaper functionality to your beautiful QBCore FiveM server and is still in active development.
 
-### Preview
-| Opening newspaper | Reporter actions | Buying newspaper |
-|--------------------| --------------- | -----------------|
-| ![Opening newspaper](https://i.imgur.com/zEXI3oh.png) | ![Opening newspaper](https://i.imgur.com/68pjuKY.png) | ![Buying newspaper](https://i.imgur.com/ounIQJY.png) |
+This resource supports:
 
-This resource is still in active development. Below features will be/have been implemented.
+- Buying a newspaper at a newspaper stand
+- Viewing news
+- Writing, updating & deleting news as a news reporter
+- Previewing a story before publishing it
+- Display of prison sentences when someone gets sent to jail
 
-- [x] Prison sentences
-- [ ] Action feedback
-- [x] Live form validation
-- [x] Image URL validation
-- [x] Update stories
-- [ ] Preview story before publishing
-- [x] Input sanitization
-- [ ] Hide news image if it returns 404 after request
+The resource supports a lot of customization. See everything in the [configuration section](https://github.com/xFutte/qb-newspaper/blob/master/README.md#configuration).
 
+## Preview
+![Opening newspaper](https://i.imgur.com/9vEGenM.png)
+[More screenshots](https://imgur.com/a/Sr1gQ4u)
 
-Maybe future implementations
-- [ ] City news (release notes for city)
-
-Feel free to report bugs or improvements and they'll be looked at.
-
-### Dependencies
+## Dependencies
 - qb-target
 - qb-inventory
 - oxmysql
@@ -53,7 +45,7 @@ export const Config = {
 	newspaperTitle: 'Los Santos Newspaper',
 	tabs: {
 		showPrisonSentences: true,
-		showCityNews: true,
+		showCityNews: false,
 	},
 	articles: {
 		showImage: true,
@@ -104,14 +96,12 @@ export const Config = {
 		tabs: {
 			newspaper: 'Newspaper',
 			prisonSentences: 'Prison sentences',
-			cityUpdates: 'City updates (coming soon)',
 			reporterActions: 'Reporter actions',
 		},
 		prisonSentences: {
 			title: 'Prison sentences',
 			noSentencesAvailable: 'No sentences available',
 		},
-		cityUpdates: {},
 		reporterActions: {
 			title: 'Reporter actions',
 			noPermissions: 'You have no reporter permissions.',
@@ -125,10 +115,11 @@ export const Config = {
 				publish: 'Publish',
 				update: 'Update',
 				discardChanges: 'Discard changes',
-				preview: 'Preview (Coming soon)',
+				preview: 'Preview',
 				wrongImageFormat:
 					'Wrong image format. Either .jpg, .jpeg, .png. .webp, .avif, .gif, or .svg expected',
 				required: 'Required',
+				cancel: 'Cancel',
 			},
 		},
 		articles: {
@@ -138,7 +129,6 @@ export const Config = {
 		},
 	},
 };
-
 ```
 
 **Config.lua**
