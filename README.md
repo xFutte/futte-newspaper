@@ -10,7 +10,7 @@ This resource supports:
 - Previewing a story before publishing it
 - Display of prison sentences when someone gets sent to jail
 
-The resource supports a lot of customization. See everything in the [#configuration](configuration) section.
+The resource supports a lot of customization. See everything in the [configuration section](https://github.com/xFutte/qb-newspaper/edit/master/README.md#configuration).
 
 ## Preview
 | Opening newspaper | Reporter actions | Buying newspaper |
@@ -46,7 +46,7 @@ export const Config = {
 	newspaperTitle: 'Los Santos Newspaper',
 	tabs: {
 		showPrisonSentences: true,
-		showCityNews: true,
+		showCityNews: false,
 	},
 	articles: {
 		showImage: true,
@@ -97,14 +97,12 @@ export const Config = {
 		tabs: {
 			newspaper: 'Newspaper',
 			prisonSentences: 'Prison sentences',
-			cityUpdates: 'City updates (coming soon)',
 			reporterActions: 'Reporter actions',
 		},
 		prisonSentences: {
 			title: 'Prison sentences',
 			noSentencesAvailable: 'No sentences available',
 		},
-		cityUpdates: {},
 		reporterActions: {
 			title: 'Reporter actions',
 			noPermissions: 'You have no reporter permissions.',
@@ -118,10 +116,11 @@ export const Config = {
 				publish: 'Publish',
 				update: 'Update',
 				discardChanges: 'Discard changes',
-				preview: 'Preview (Coming soon)',
+				preview: 'Preview',
 				wrongImageFormat:
 					'Wrong image format. Either .jpg, .jpeg, .png. .webp, .avif, .gif, or .svg expected',
 				required: 'Required',
+				cancel: 'Cancel',
 			},
 		},
 		articles: {
@@ -131,7 +130,6 @@ export const Config = {
 		},
 	},
 };
-
 ```
 
 **Config.lua**
