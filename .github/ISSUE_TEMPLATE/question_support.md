@@ -1,6 +1,6 @@
 ---
 name: Support & questions
-about: Suggest an idea for this project
+about: Ask any questions if in doubt of something
 title: ''
 labels: 'help-wanted'
 assignees: xFutte
