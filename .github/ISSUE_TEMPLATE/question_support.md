@@ -2,7 +2,7 @@
 name: Support & questions
 about: Suggest an idea for this project
 title: ''
-labels: ''
+labels: 'help-wanted'
 assignees: xFutte
 
 ---
