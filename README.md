@@ -10,7 +10,7 @@ This resource supports:
 - Previewing a story before publishing it
 - Display of prison sentences when someone gets sent to jail
 
-The resource supports a lot of customization. See everything in the [configuration section](https://github.com/xFutte/qb-newspaper/edit/master/README.md#configuration).
+The resource supports a lot of customization. See everything in the [configuration section](https://github.com/xFutte/qb-newspaper/blob/master/README.md#configuration).
 
 ## Preview
 | Opening newspaper | Reporter actions | Buying newspaper |
