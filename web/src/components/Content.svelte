@@ -16,7 +16,7 @@
 	import PrisonSentences from '../pages/PrisonSentences.svelte';
 	import type { ISentence } from '../interfaces/ISentence';
 
-	let value = 3;
+	let value = 0;
 
 	export let stories: Array<Story>;
 	export let isReporter: boolean;
@@ -35,9 +35,6 @@
 				{#if Config.tabs.showPrisonSentences}<Tab
 						>{Config.text.tabs.prisonSentences}</Tab
 					>{/if}
-				{#if Config.tabs.showCityNews}<Tab disabled
-						>{Config.text.tabs.cityUpdates}</Tab
-					>{/if}
 				{#if isReporter && reporterOnDuty}<Tab
 						><Icon path={mdiStar} /><span class="ml-2"
 							>{Config.text.tabs.reporterActions}</span
@@ -55,17 +52,11 @@
 	<WindowItem>
 		<PrisonSentences {sentences} />
 	</WindowItem>
-	<WindowItem>
-		<h4>City updates</h4>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-			accumsan, diam et elementum gravida, arcu mi fermentum nibh, vel
-			dapibus ligula orci non est. Morbi commodo sagittis finibus.
-			Maecenas in volutpat massa. Nullam vulputate metus velit, quis
-			interdum elit imperdiet ut. Suspendisse et sagittis erat, euismod
-			vulputate enim. Etiam feugiat sit amet justo vitae commodo.
-		</p>
-	</WindowItem>
+	{#if Config.tabs.showCityNews}
+		<WindowItem>
+			<!-- Might be implemented of requested -->
+		</WindowItem>
+	{/if}
 	{#if isReporter}
 		<WindowItem>
 			<Reporter {stories} {reporterLevel} {isReporter} {playerName} />

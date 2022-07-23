@@ -2,7 +2,7 @@ export const Config = {
 	newspaperTitle: 'Los Santos Newspaper',
 	tabs: {
 		showPrisonSentences: true,
-		showCityNews: true,
+		showCityNews: false,
 	},
 	articles: {
 		showImage: true,
@@ -53,14 +53,12 @@ export const Config = {
 		tabs: {
 			newspaper: 'Newspaper',
 			prisonSentences: 'Prison sentences',
-			cityUpdates: 'City updates (coming soon)',
 			reporterActions: 'Reporter actions',
 		},
 		prisonSentences: {
 			title: 'Prison sentences',
 			noSentencesAvailable: 'No sentences available',
 		},
-		cityUpdates: {},
 		reporterActions: {
 			title: 'Reporter actions',
 			noPermissions: 'You have no reporter permissions.',
