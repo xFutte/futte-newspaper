@@ -2,6 +2,16 @@
 
 This standalone resource will add a newspaper functionality to your beautiful QBCore FiveM server.
 
+This resource supports:
+
+- Buying a newspaper at a newspaper stand
+- Viewing news
+- Writing, updating & deleting news as a news reporter
+- Previewing a story before publishing it
+- Display of prison sentences when someone gets sent to jail
+
+The resource supports a lot of customization. See everything in the [configuration](configuration) section.
+
 ### Preview
 | Opening newspaper | Reporter actions | Buying newspaper |
 |--------------------| --------------- | -----------------|
