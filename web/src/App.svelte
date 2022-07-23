@@ -25,8 +25,8 @@
 
 		const placeholderStory = {
 			id: 0,
-			title: 'Welcome to qb-newsstands',
-			body: "<p>qb-newsstands is a standalone ressource for FiveM. It has the following dependencies:</p><p><ul><li>qb-target</li><li>oxmysql</li></ul></p><p>I hope you'll enjoy the resource. Feel free to open issues if you find a bug/wish new functionality.</p><p>- xFutte</p>",
+			title: 'Welcome to futte-newspaper', 
+			body: "<p>futte-newspaper is a standalone ressource for FiveM. It has the following dependencies:</p><p><ul><li>qb-target</li><li>oxmysql</li></ul></p><p>I hope you'll enjoy the resource. Feel free to open issues if you find a bug/wish new functionality.</p><p>- xFutte</p>",
 			image: 'https://w0.peakpx.com/wallpaper/131/302/HD-wallpaper-grand-theft-auto-5-gta-v-grand-theft-auto-v-open-world-gaming-video-game-game-gta-5.jpg',
 			date: moment().format('MMMM Do YYYY'),
 			type: 'news',
