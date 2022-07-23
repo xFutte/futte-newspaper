@@ -1,6 +1,6 @@
 # qb-newspaper
 
-This standalone resource will add a newspaper functionality to your beautiful QBCore FiveM server.
+This standalone resource will add a newspaper functionality to your beautiful QBCore FiveM server and is still in active development.
 
 This resource supports:
 
@@ -10,31 +10,14 @@ This resource supports:
 - Previewing a story before publishing it
 - Display of prison sentences when someone gets sent to jail
 
-The resource supports a lot of customization. See everything in the [[configuration](https://github.com/xFutte/qb-newspaper/blob/master/README.md#configuration)](configuration) section.
+The resource supports a lot of customization. See everything in the [#configuration](configuration) section.
 
-### Preview
+## Preview
 | Opening newspaper | Reporter actions | Buying newspaper |
 |--------------------| --------------- | -----------------|
 | ![Opening newspaper](https://i.imgur.com/zEXI3oh.png) | ![Opening newspaper](https://i.imgur.com/68pjuKY.png) | ![Buying newspaper](https://i.imgur.com/ounIQJY.png) |
 
-This resource is still in active development. Below features will be/have been implemented.
-
-- [x] Prison sentences
-- [x] Live form validation
-- [x] Image URL validation
-- [x] Update stories
-- [x] Preview story before publishing
-- [x] Input sanitization
-- [ ] Action feedback
-- [ ] Hide news image if it returns 404 after request
-
-
-Maybe future implementations
-- [ ] City news (release notes for city)
-
-Feel free to report bugs or improvements and they'll be looked at.
-
-### Dependencies
+## Dependencies
 - qb-target
 - qb-inventory
 - oxmysql
