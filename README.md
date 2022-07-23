@@ -10,12 +10,12 @@ This standalone resource will add a newspaper functionality to your beautiful QB
 This resource is still in active development. Below features will be/have been implemented.
 
 - [x] Prison sentences
-- [ ] Action feedback
 - [x] Live form validation
 - [x] Image URL validation
 - [x] Update stories
-- [ ] Preview story before publishing
+- [x] Preview story before publishing
 - [x] Input sanitization
+- [ ] Action feedback
 - [ ] Hide news image if it returns 404 after request
 
 
