@@ -1,4 +1,4 @@
-# qb-newspaper
+# Newspaper script for QBCore
 
 This standalone resource will add a newspaper functionality to your beautiful QBCore FiveM server and is still in active development.
 
@@ -39,7 +39,7 @@ The resource supports a lot of customization. See everything in the [configurati
 
 ## Configuration
 
-There are quite a lot of configurations possible out-of-the-box with qb-newspaper. This consists of two files: `config.js` and `config.lua`.
+There are quite a lot of configurations possible out-of-the-box. These consists of two files: `config.js` and `config.lua`.
 
 **Config.js**
 ```js
