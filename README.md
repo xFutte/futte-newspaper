@@ -13,9 +13,8 @@ This resource supports:
 The resource supports a lot of customization. See everything in the [configuration section](https://github.com/xFutte/qb-newspaper/blob/master/README.md#configuration).
 
 ## Preview
-| Opening newspaper | Reporter actions | Buying newspaper |
-|--------------------| --------------- | -----------------|
-| ![Opening newspaper](https://i.imgur.com/zEXI3oh.png) | ![Opening newspaper](https://i.imgur.com/68pjuKY.png) | ![Buying newspaper](https://i.imgur.com/ounIQJY.png) |
+![Opening newspaper](https://i.imgur.com/9vEGenM.png)
+[More screenshots](https://imgur.com/a/Sr1gQ4u)
 
 ## Dependencies
 - qb-target
