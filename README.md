@@ -13,7 +13,7 @@ This resource supports:
 The resource supports a lot of customization. See everything in the [configuration section](https://github.com/xFutte/qb-newspaper/blob/master/README.md#configuration).
 
 ## Preview
-![Opening newspaper](https://i.imgur.com/9vEGenM.png)
+![Opening newspaper](https://i.imgur.com/vkSWDU3.png)
 [More screenshots](https://imgur.com/a/Sr1gQ4u)
 
 ## Dependencies
