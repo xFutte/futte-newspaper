@@ -14,6 +14,7 @@
 	let reporterOnDuty: boolean;
 	let isReporter: boolean;
 	let sentences: Array<ISentence>;
+	let playerName: string;
 
 	window.addEventListener('message', (event) => {
 		const data: INewspaperData = event.data;
@@ -21,6 +22,7 @@
 		isReporter = data.isReporter;
 		reporterLevel = data.reporterLevel;
 		reporterOnDuty = data.reporterOnDuty;
+		playerName = data.playerName
 
 		const placeholderStory = {
 			id: 0,
@@ -47,7 +49,14 @@
 <main class="container">
 	<VisibilityProvider>
 		<MaterialApp>
-			<Content {stories} {isReporter} {reporterLevel} {reporterOnDuty} {sentences} />
+			<Content
+				{stories}
+				{isReporter}
+				{reporterLevel}
+				{reporterOnDuty}
+				{sentences}
+				{playerName}
+			/>
 		</MaterialApp>
 	</VisibilityProvider>
 </main>

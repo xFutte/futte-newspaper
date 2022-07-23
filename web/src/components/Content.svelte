@@ -16,13 +16,14 @@
 	import PrisonSentences from '../pages/PrisonSentences.svelte';
 	import type { ISentence } from '../interfaces/ISentence';
 
-	let value = 0;
+	let value = 3;
 
 	export let stories: Array<Story>;
 	export let isReporter: boolean;
 	export let reporterOnDuty: boolean;
 	export let reporterLevel: number;
 	export let sentences: Array<ISentence>;
+	export let playerName: string;
 </script>
 
 <AppBar>
@@ -67,7 +68,7 @@
 	</WindowItem>
 	{#if isReporter}
 		<WindowItem>
-			<Reporter {stories} {reporterLevel} {isReporter} />
+			<Reporter {stories} {reporterLevel} {isReporter} {playerName} />
 		</WindowItem>
 	{/if}
 </Window>

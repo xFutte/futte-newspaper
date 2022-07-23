@@ -13,6 +13,7 @@ QBCore.Functions.CreateCallback('newsstands:server:getStories', function(source,
     local reporterLevel = nil
     local amountOfNews = Config.AmountOfNews or 10
     local amountOfSentences = Config.AmountOfSentences or 10
+    local playerName = Player.PlayerData.charinfo['firstname'] .. ' ' .. Player.PlayerData.charinfo['lastname']
 
     local reporterOnDuty = Player.PlayerData.job['onduty']
 
@@ -27,7 +28,7 @@ QBCore.Functions.CreateCallback('newsstands:server:getStories', function(source,
     local sentences = exports.oxmysql:executeSync(
         "SELECT * FROM newsstands WHERE story_type = ? ORDER BY id DESC LIMIT " .. amountOfNews .. "", {'jail'})
 
-    cb(news, sentences, isReporter, reporterLevel, reporterOnDuty)
+    cb(news, sentences, isReporter, reporterLevel, reporterOnDuty, playerName)
 
     reporterLevel = nil
 end)

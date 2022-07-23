@@ -28,7 +28,6 @@
 
 	function showForm(articleId: number) {
 		active = true;
-
 		updateId = articleId;
 	}
 

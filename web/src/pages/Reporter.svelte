@@ -13,6 +13,7 @@
 	export let stories: Array<Story>;
 	export let reporterLevel: number;
 	export let isReporter: boolean;
+	export let playerName: string;
 
 	let updateContext = false;
 	let updateId = undefined;
@@ -35,7 +36,7 @@
 							><Icon path={mdiPencil} class="mr-2" />{Config.text
 								.reporterActions.publishNewStory}</span
 						>
-						<Create {updateContext} {stories} {updateId} {active} />
+						<Create {updateContext} {stories} {updateId} {active} {playerName} />
 					</ExpansionPanel>
 				{/if}
 				{#if reporterPermissions.canEdit}

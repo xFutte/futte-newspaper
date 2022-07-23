@@ -8,4 +8,5 @@ export interface INewspaperData {
 	reporterLevel: number;
 	reporterOnDuty: boolean;
 	isReporter: boolean;
+	playerName: string;
 }

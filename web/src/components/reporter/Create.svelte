@@ -2,7 +2,12 @@
 	import { Config } from './../../../config';
 	import DOMPurify from 'dompurify';
 	import moment from 'moment';
-	import { TextField, Button, ExpansionPanel } from 'svelte-materialify';
+	import {
+		TextField,
+		Button,
+		ExpansionPanel,
+		Dialog,
+	} from 'svelte-materialify';
 	import { quill } from 'svelte-quill';
 	import type { Story } from '../../interfaces/story';
 	import { fetchNui } from '../../utils/fetchNui';
@@ -12,6 +17,7 @@
 	export let stories: Array<Story>;
 	export let updateId;
 	export let active;
+	export let playerName: string;
 
 	export let close = () => {};
 
@@ -69,6 +75,9 @@
 	}
 
 	function publishArticle(): void {
+		// Close preview
+		active = false;
+
 		if (DOMPurify.isSupported) {
 			if (titleValue && bodyValue) {
 				story = {
@@ -119,6 +128,18 @@
 		}
 
 		validBody = bodyValue?.length ? true : false;
+	}
+
+	function showPreview(): void {
+		const previewStoryBody = document.querySelector('#preview-story-body');
+
+		if (bodyInput && previewStoryBody) {
+			previewStoryBody.innerHTML = bodyInput.innerHTML as string;
+		}
+	}
+
+	function hidePreview(): void {
+		active = false;
 	}
 </script>
 
@@ -172,7 +193,9 @@
 					.publish}{/if}</Button
 		>
 
-		{#if !updateContext}<Button disabled
+		{#if !updateContext}<Button
+				disabled={!validBody || !validTitle || !validUrl}
+				on:click={() => (active = true)}
 				>{Config.text.reporterActions.publishStory.preview}</Button
 			>
 		{/if}
@@ -183,10 +206,67 @@
 	</form>
 </div>
 
-<style>
+<Dialog
+	bind:active
+	on:introstart={showPreview}
+	class="pa-4 preview-story-dialog"
+>
+	<div class="preview-content">
+		{#if Config.articles.showImage}
+			{#if imageValue}<div class="main_article_image">
+					<!-- svelte-ignore a11y-img-redundant-alt -->
+					<img width="100%" src={imageValue} alt="Story image" />
+				</div>
+			{/if}
+		{/if}
+
+		{#if Config.articles.showTitle}
+			<h4 class="mt-2">
+				{titleValue}
+			</h4>
+		{/if}
+
+		{#if Config.articles.showPublisher || Config.articles.showDate}
+			<p>
+				<small
+					>{#if Config.articles.showPublisher}{Config.text.articles
+							.writtenBy}
+						{playerName}
+						{#if Config.articles.showPublisher && Config.articles.showDate}{Config
+								.text.articles.on}{/if}
+					{/if}{#if Config.articles.showDate}{moment(
+							new Date()
+						).format('MMMM Do YYYY')}{/if}
+				</small>
+			</p>
+		{/if}
+
+		<div id="preview-story-body" />
+	</div>
+
+	<div class="action-buttons">
+		<Button on:click={publishArticle} class="green white-text"
+			>{Config.text.reporterActions.publishStory.publish}</Button
+		>
+
+		<Button on:click={() => hidePreview()}
+			>{Config.text.reporterActions.publishStory.cancel}</Button
+		>
+	</div>
+</Dialog>
+
+<style lang="scss">
 	.container {
 		width: 100%;
 		padding: 20px;
+	}
+
+	:global(.preview-story-dialog) {
+		width: 65% !important;
+		height: 77%; 
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
 	.editor {

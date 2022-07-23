@@ -59,7 +59,6 @@ export const Config = {
 		prisonSentences: {
 			title: 'Prison sentences',
 			noSentencesAvailable: 'No sentences available',
-			randomRoasts: ['a', 'b', 'c', 'd'],
 		},
 		cityUpdates: {},
 		reporterActions: {
@@ -75,10 +74,11 @@ export const Config = {
 				publish: 'Publish',
 				update: 'Update',
 				discardChanges: 'Discard changes',
-				preview: 'Preview (Coming soon)',
+				preview: 'Preview',
 				wrongImageFormat:
 					'Wrong image format. Either .jpg, .jpeg, .png. .webp, .avif, .gif, or .svg expected',
 				required: 'Required',
+				cancel: 'Cancel',
 			},
 		},
 		articles: {
