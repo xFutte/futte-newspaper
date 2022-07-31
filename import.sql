@@ -1,4 +1,4 @@
-CREATE TABLE `newsstands` (
+CREATE TABLE `newspaper` (
 	`id` INT(10) NOT NULL AUTO_INCREMENT,
 	`story_type` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8_general_ci',
 	`title` VARCHAR(5000) NOT NULL DEFAULT '' COLLATE 'utf8_general_ci',
