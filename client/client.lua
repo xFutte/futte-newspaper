@@ -24,24 +24,6 @@ local function AddItemToNewsStand(storyType, paper, paperIcon, stands)
     })
 end
 
---[[RegisterNetEvent('newsstands:takePaper', function()
-    local ped = PlayerPedId()
-    QBCore.Functions.Progressbar("take_paper", "Taking Newspaper..", 10000, false, true, {
-        disableMovement = true,
-        disableCarMovement = true,
-        disableMouse = false,
-        disableCombat = true,
-    }, {
-		animDict = "amb@prop_human_bum_bin@base",
-		anim = "base",
-		flags = 49,
-	}, {}, {}, function()
-        TriggerServerEvent('newsstands:buy')
-    end, function()
-        QBCore.Functions.Notify("Canceled..", "error")
-    end, "fa-solid fa-newspaper")
-end)]]--
-
 AddItemToNewsStand('newspaper', Config.BuyNewspaperText, Config.BuyNewspaperIcon, NewsStands)
 
 RegisterNetEvent('newsstands:client:openNewspaper', function()
