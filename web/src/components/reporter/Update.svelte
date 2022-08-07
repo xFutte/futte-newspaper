@@ -22,9 +22,9 @@
 	// Stories will be provided by the content component
 	export let stories;
 	let updateContext = true;
-	let payload: object = {};
 	let active = false;
 	let updateId: number | null = null;
+	let playerName: string;
 
 	function showForm(articleId: number) {
 		active = true;
@@ -33,6 +33,8 @@
 
 	let close = () => {
 		active = false;
+
+		updateContext = updateContext ? false : true
 	};
 </script>
 
@@ -64,7 +66,14 @@
 </div>
 
 <Dialog persistent bind:active>
-	<Create {updateContext} {stories} {updateId} {active} {close} />
+	<Create
+		{updateContext}
+		{stories}
+		{updateId}
+		{active}
+		{close}
+		{playerName}
+	/>
 </Dialog>
 
 <style>
