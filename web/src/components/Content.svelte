@@ -49,9 +49,11 @@
 	<WindowItem>
 		<News {stories} />
 	</WindowItem>
-	<WindowItem>
-		<PrisonSentences {sentences} />
-	</WindowItem>
+	{#if Config.tabs.showPrisonSentences}
+		<WindowItem>
+			<PrisonSentences {sentences} />
+		</WindowItem>
+	{/if}
 	{#if Config.tabs.showCityNews}
 		<WindowItem>
 			<!-- Might be implemented of requested -->

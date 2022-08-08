@@ -2,11 +2,11 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 function CreateJailStory(name, time)
     exports.oxmysql:execute(
-        'INSERT INTO newsstands (story_type, jailed_player, jailed_time, date) VALUES (?, ?, ?, CURRENT_TIMESTAMP)',
+        'INSERT INTO newspaper (story_type, jailed_player, jailed_time, date) VALUES (?, ?, ?, CURRENT_TIMESTAMP)',
         {'jail', name, time})
 end
 
-QBCore.Functions.CreateCallback('newsstands:server:getStories', function(source, cb)
+QBCore.Functions.CreateCallback('newspaper:server:getStories', function(source, cb)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     local isReporter = false
@@ -22,11 +22,11 @@ QBCore.Functions.CreateCallback('newsstands:server:getStories', function(source,
         reporterLevel = Player.PlayerData.job.grade['level']
     end
 
-    local news = exports.oxmysql:executeSync("SELECT * FROM newsstands WHERE story_type = ? ORDER BY id DESC LIMIT " ..
+    local news = exports.oxmysql:executeSync("SELECT * FROM newspaper WHERE story_type = ? ORDER BY id DESC LIMIT " ..
                                                  amountOfNews .. "", {'news'})
 
     local sentences = exports.oxmysql:executeSync(
-        "SELECT * FROM newsstands WHERE story_type = ? ORDER BY id DESC LIMIT " .. amountOfNews .. "", {'jail'})
+        "SELECT * FROM newspaper WHERE story_type = ? ORDER BY id DESC LIMIT " .. amountOfNews .. "", {'jail'})
 
     cb(news, sentences, isReporter, reporterLevel, reporterOnDuty, playerName)
 
@@ -40,12 +40,12 @@ QBCore.Functions.CreateUseableItem("newspaper", function(source, item)
     local Player = QBCore.Functions.GetPlayer(src)
 
     if Player.Functions.GetItemByName(item.name) ~= nil then
-        TriggerClientEvent('newsstands:client:openNewspaper', src)
+        TriggerClientEvent('newspaper:client:openNewspaper', src)
     end
 end)
 
 -- Buy a newspaper
-RegisterNetEvent('newsstands:buy', function(type)
+RegisterNetEvent('newspaper:buy', function(type)
     local Player = QBCore.Functions.GetPlayer(source)
     local cash = Player.PlayerData.money['cash']
 
@@ -62,7 +62,7 @@ RegisterNetEvent('newsstands:buy', function(type)
     end
 end)
 
-RegisterNetEvent('newsstands:server:updateStory', function(data)
+RegisterNetEvent('newspaper:server:updateStory', function(data)
     local Player = QBCore.Functions.GetPlayer(source)
     local src = source
     local knownPlayers = {}
@@ -71,12 +71,13 @@ RegisterNetEvent('newsstands:server:updateStory', function(data)
 
     if Player.PlayerData.job['name'] == 'reporter' then
         if not knownPlayers[source] then
-            -- Yeet the player 
+
             knownPlayers[source] = nil;
+            DropPlayer(src, "Exploid detected") -- Update this to ban if you feel like it
 
             return
         else
-            exports.oxmysql:insert('UPDATE newsstands SET title = ?, body = ?, image = ? WHERE id = ?',
+            exports.oxmysql:insert('UPDATE newspaper SET title = ?, body = ?, image = ? WHERE id = ?',
                 {data.title, data.body, data.image, data.id})
 
             TriggerClientEvent('QBCore:Notify', src, 'Story has been updated!', 'success')
@@ -89,7 +90,7 @@ RegisterNetEvent('newsstands:server:updateStory', function(data)
 
 end)
 
-RegisterNetEvent('newsstands:server:publishStory', function(data)
+RegisterNetEvent('newspaper:server:publishStory', function(data)
     local Player = QBCore.Functions.GetPlayer(source)
     local src = source
     local knownPlayers = {}
@@ -100,13 +101,14 @@ RegisterNetEvent('newsstands:server:publishStory', function(data)
 
     if Player.PlayerData.job['name'] == 'reporter' then
         if not knownPlayers[source] then
-            -- Yeet the player 
+
             knownPlayers[source] = nil;
+            DropPlayer(src, "Exploid detected") -- Update this to ban if you feel like it
 
             return
         else
             exports.oxmysql:insert(
-                'INSERT INTO newsstands (story_type, title, body, date, image, publisher) VALUES (?, ?, ?, ?, ?, ?)',
+                'INSERT INTO newspaper (story_type, title, body, date, image, publisher) VALUES (?, ?, ?, ?, ?, ?)',
                 {'news', data.title, data.body, data.date, data.image, playerName})
 
             TriggerClientEvent('QBCore:Notify', src, 'Story has been published!', 'success')
@@ -118,7 +120,7 @@ RegisterNetEvent('newsstands:server:publishStory', function(data)
     knownPlayers[source] = nil;
 end)
 
-RegisterNetEvent('newsstands:server:deleteStory', function(data)
+RegisterNetEvent('newspaper:server:deleteStory', function(data)
     local Player = QBCore.Functions.GetPlayer(source)
     local src = source
     local knownPlayers = {}
@@ -133,7 +135,7 @@ RegisterNetEvent('newsstands:server:deleteStory', function(data)
 
             return
         else
-            exports.oxmysql:execute('DELETE FROM newsstands WHERE id = ?', {data.id})
+            exports.oxmysql:execute('DELETE FROM newspaper WHERE id = ?', {data.id})
 
             TriggerClientEvent('QBCore:Notify', src, 'Story have been deleted', 'success')
         end

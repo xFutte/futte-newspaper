@@ -17,7 +17,7 @@
 	onMount(() => {
 		const keyHandler = (e: KeyboardEvent) => {
 			if (isVisible && ['Escape'].includes(e.code)) {
-				fetchNui('newsstands:client:closeNewspaper');
+				fetchNui('newspaper:client:closeNewspaper');
 				visibility.set(false);
 			}
 		};

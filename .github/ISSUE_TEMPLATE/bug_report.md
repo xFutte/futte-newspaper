@@ -7,6 +7,10 @@ assignees: 'xFutte'
 
 ---
 
+_Many outreaches has been about code not changing when developing. Make sure that you are compiling your code when developing. Follow the README.md_
+
+----
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
