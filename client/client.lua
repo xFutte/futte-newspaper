@@ -1,7 +1,7 @@
 -- CUSTOM CODE
 local QBCore = exports['qb-core']:GetCoreObject()
 
-local newspaper = {"prop_news_disp_02a_s", "prop_news_disp_02c", "prop_news_disp_05a", "prop_news_disp_02e",
+local newsstands = {"prop_news_disp_02a_s", "prop_news_disp_02c", "prop_news_disp_05a", "prop_news_disp_02e",
                    "prop_news_disp_03c", "prop_news_disp_06a", "prop_news_disp_02a", "prop_news_disp_02d",
                    "prop_news_disp_02b", "prop_news_disp_01a", "prop_news_disp_03a"}
 
@@ -26,7 +26,7 @@ local function AddItemToNewsStand(storyType, paper, paperIcon, stands)
     })
 end
 
-AddItemToNewsStand('newspaper', Config.BuyNewspaperText, Config.BuyNewspaperIcon, newspaper)
+AddItemToNewsStand('newspaper', Config.BuyNewspaperText, Config.BuyNewspaperIcon, newsstands)
 
 RegisterNetEvent('newspaper:client:openNewspaper', function()
     RequestAnimDict("missfam4")
