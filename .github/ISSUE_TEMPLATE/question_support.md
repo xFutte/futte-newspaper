@@ -2,7 +2,7 @@
 name: Support & questions
 about: Ask any questions if in doubt of something
 title: ''
-labels: 'help-wanted'
+labels: 'question'
 assignees: xFutte
 
 ---
