@@ -86,7 +86,11 @@
 					image: imageValue,
 					title: titleValue,
 					body: bodyValue as string,
-					date: moment(new Date()).format('MMMM Do YYYY'),
+					date: Config.customYear
+						? moment()
+								.set({ year: Config.customYear })
+								.format('MMMM Do YYYY')
+						: moment(new Date()).format('MMMM Do YYYY'),
 				};
 
 				if (updateContext === true) {
@@ -234,9 +238,11 @@
 						{playerName}
 						{#if Config.articles.showPublisher && Config.articles.showDate}{Config
 								.text.articles.on}{/if}
-					{/if}{#if Config.articles.showDate}{moment(
-							new Date()
-						).format('MMMM Do YYYY')}{/if}
+					{/if}{#if Config.articles.showDate}{Config.customYear
+						? moment()
+								.set({ year: Config.customYear })
+								.format('MMMM Do YYYY')
+						: moment(new Date()).format('MMMM Do YYYY')}{/if}
 				</small>
 			</p>
 		{/if}
@@ -263,7 +269,7 @@
 
 	:global(.preview-story-dialog) {
 		width: 65% !important;
-		height: 77%; 
+		height: 77%;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
