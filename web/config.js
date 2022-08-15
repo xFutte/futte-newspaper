@@ -11,7 +11,7 @@ export const Config = {
 		showPublisher: true,
 		titleMaxLength: 60,
 	},
-	// Set this to the year you want the articles to be published in (rest of the date will be according to the actual date)
+	// Set this to a custom year for the publish year. Otherwise it will use the current date
 	customYear: undefined,
 	publishArticleControls: [
 		['bold', 'italic', 'underline', 'strike'],
