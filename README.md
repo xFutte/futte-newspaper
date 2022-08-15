@@ -9,6 +9,7 @@ This resource supports:
 - Writing, updating & deleting news as a news reporter
 - Previewing a story before publishing it
 - Display of prison sentences when someone gets sent to jail
+- Easy configuration
 
 The resource supports a lot of customization. See everything in the [configuration section](https://github.com/xFutte/qb-newspaper/blob/master/README.md#configuration).
 
