@@ -24,7 +24,15 @@ The resource supports a lot of customization. See everything in the [configurati
 
 ## Implementation
 1. Run the attached import.sql file in the database.
-2. Add `exports['futte-newspaper']:CreateJailStory(name, time)` inside the `police:server:JailPlayer` event, parsing the name of the prisoner and the time sentenced as parameters.
+2. Add the following to the `police:server:JailPlayer` event 
+```lua
+local name = OtherPlayer.PlayerData.charinfo.firstname.." "..OtherPlayer.PlayerData.charinfo.lastname
+exports['futte-newspaper']:CreateJailStory(name, time)` 
+```
+after the line
+```lua
+if not Player or not OtherPlayer or Player.PlayerData.job.name ~= "police" then return end
+```
 3. Add the newspaper.png image into your qb-inventory folder, where all the other images are located (located in the root of the repo).
 4. Add following to your shared.lua file:
 ```lua
