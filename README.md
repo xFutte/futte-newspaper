@@ -11,7 +11,7 @@ This resource supports:
 - Display of prison sentences when someone gets sent to jail
 - Easy configuration
 
-The resource supports a lot of customization. See everything in the [configuration section](https://github.com/xFutte/qb-newspaper/blob/master/README.md#configuration).
+I'll offer support in **[my Discord server](https://discord.gg/R7MMSsZJ8r)**.
 
 ## Preview
 ![Opening newspaper](https://i.imgur.com/vkSWDU3.png)
