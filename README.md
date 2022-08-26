@@ -41,7 +41,7 @@ if not Player or not OtherPlayer or Player.PlayerData.job.name ~= "police" then 
 
 ## Development
 
-1. Navigate to ./web and run `npm install` to install all dependencies. If you don't already have node.js you can [download it here](https://nodejs.org/en/download/).'
+1. Navigate to ./web in a command prompt and run `npm install` to install all dependencies. If you don't already have node.js installed, you can [download it here](https://nodejs.org/en/download/).'
 2. Run `npm run dev` in ./web to compile the GUI.
 
 :bulb: When you are done working with the resource run `npm run build` to minify and uglify the resource to decrease the resource size.
