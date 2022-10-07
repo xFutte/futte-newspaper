@@ -27,7 +27,7 @@ I'll offer support in **[my Discord server](https://discord.gg/R7MMSsZJ8r)**.
 2. Add the following to the `police:server:JailPlayer` event 
 ```lua
 local name = OtherPlayer.PlayerData.charinfo.firstname.." "..OtherPlayer.PlayerData.charinfo.lastname
-exports['futte-newspaper']:CreateJailStory(name, time)` 
+exports['futte-newspaper']:CreateJailStory(name, time)
 ```
 after the line
 ```lua
