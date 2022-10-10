@@ -15,7 +15,7 @@ I'll offer support in **[my Discord server](https://discord.gg/R7MMSsZJ8r)**.
 
 ## Preview
 ![Opening newspaper](https://user-images.githubusercontent.com/6727484/194955635-6e1df61d-6b40-41b4-a20c-ac291cff056d.png)
-[More screenshots](https://imgur.com/a/Sr1gQ4u)
+[More screenshots](https://imgur.com/a/6Pk5l41)
 
 ## Dependencies
 - qb-target
