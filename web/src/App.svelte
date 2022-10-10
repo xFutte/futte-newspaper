@@ -21,11 +21,11 @@
 		isReporter = data.isReporter;
 		reporterLevel = data.reporterLevel;
 		reporterOnDuty = data.reporterOnDuty;
-		playerName = data.playerName
+		playerName = data.playerName;
 
 		const placeholderStory = {
 			id: 0,
-			title: 'Welcome to futte-newspaper', 
+			title: 'Welcome to futte-newspaper',
 			body: "<p>futte-newspaper is a standalone ressource for FiveM. It has the following dependencies:</p><p><ul><li>qb-target</li><li>oxmysql</li></ul></p><p>I hope you'll enjoy the resource. Feel free to open issues if you find a bug/wish new functionality.</p><p>- xFutte</p>",
 			image: 'https://w0.peakpx.com/wallpaper/131/302/HD-wallpaper-grand-theft-auto-5-gta-v-grand-theft-auto-v-open-world-gaming-video-game-game-gta-5.jpg',
 			date: moment().format('MMMM Do YYYY'),
@@ -48,14 +48,16 @@
 <main class="container">
 	<VisibilityProvider>
 		<MaterialApp>
-			<Content
-				{stories}
-				{isReporter}
-				{reporterLevel}
-				{reporterOnDuty}
-				{sentences}
-				{playerName}
-			/>
+			<div class="background">
+				<Content
+					{stories}
+					{isReporter}
+					{reporterLevel}
+					{reporterOnDuty}
+					{sentences}
+					{playerName}
+				/>
+			</div>
 		</MaterialApp>
 	</VisibilityProvider>
 </main>
@@ -76,5 +78,19 @@
 		user-select: none;
 		height: 1005px;
 		min-height: 1005px;
+	}
+
+	.background {
+		background-image: url(assets/background2.jpg);
+		height: 1005px;
+	}
+
+	:global(.newspaper-left-page) {
+		box-shadow: inset rgb(187 187 187) -9px 0px 20px 0px;
+	}
+
+	:global(.newspaper-right-page) {
+		box-shadow: inset rgb(187 187 187) 9px 0px 20px 0px;
+		    border-left: 1px solid rgba(119, 118, 118, 0.7);
 	}
 </style>

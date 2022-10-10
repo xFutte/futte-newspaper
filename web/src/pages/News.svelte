@@ -50,7 +50,7 @@
 				'ellipsis',
 				'pt-3',
 				'pb-2',
-				'pl-4',
+				'pl-3',
 				'pr-4'
 			);
 
@@ -78,12 +78,12 @@
 
 <div class="container">
 	{#if stories.length > 0}
-		<div class="latest pa-4">
+		<div class="latest pa-5 newspaper-left-page">
 			{#if Config.articles.showImage}
 				{#if storyImage}<div class="main_article_image">
-					<!-- svelte-ignore a11y-img-redundant-alt -->
-					<img src={storyImage} alt="Story image" />
-				</div>
+						<!-- svelte-ignore a11y-img-redundant-alt -->
+						<img src={storyImage} alt="Story image" />
+					</div>
 				{/if}
 			{/if}
 
@@ -110,8 +110,8 @@
 
 			<div class="body-content" />
 		</div>
-		<div class="previous">
-			<h4 class="ma-4">{Config.text.articles.latestStories}</h4>
+		<div class="previous pa-5 newspaper-right-page">
+			<h4 class="ml-3 mr-3 mb-3 mt-0">{Config.text.articles.latestStories}</h4>
 			<div class="all-stories" />
 		</div>
 	{/if}
@@ -133,7 +133,8 @@
 
 	.previous,
 	.latest {
-		height: 895px;
+		flex: 1;
+		height: 900px;
 		overflow: auto;
 
 		scrollbar-width: thin;
@@ -154,14 +155,6 @@
 		}
 	}
 
-	.previous {
-		flex: 1;
-	}
-
-	.latest {
-		width: 65%;
-	}
-
 	.main_article_image {
 		width: 100%;
 	}
@@ -171,7 +164,7 @@
 	}
 
 	:global(.story:hover) {
-		background: lightgrey;
+		background: rgb(154 154 154 / 10%);
 		cursor: pointer;
 	}
 
@@ -181,4 +174,6 @@
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}
+
+
 </style>

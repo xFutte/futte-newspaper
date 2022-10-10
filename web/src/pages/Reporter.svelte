@@ -23,7 +23,7 @@
 	) as IReporterLevels;
 </script>
 
-<div class="pa-4">
+<div class="pa-4 reporter-page">
 	<h4>{Config.text.reporterActions.title}</h4>
 	{#if !isReporter || (!reporterPermissions.canPublish && !reporterPermissions.canEdit && !reporterPermissions.canDelete)}
 		<p>{Config.text.reporterActions.noPermissions}</p>
@@ -36,7 +36,13 @@
 							><Icon path={mdiPencil} class="mr-2" />{Config.text
 								.reporterActions.publishNewStory}</span
 						>
-						<Create {updateContext} {stories} {updateId} {active} {playerName} />
+						<Create
+							{updateContext}
+							{stories}
+							{updateId}
+							{active}
+							{playerName}
+						/>
 					</ExpansionPanel>
 				{/if}
 				{#if reporterPermissions.canEdit}
@@ -63,3 +69,9 @@
 		</div>
 	{/if}
 </div>
+
+<style lang="scss">
+	.reporter-page {
+		height: 900px;
+	}
+</style>

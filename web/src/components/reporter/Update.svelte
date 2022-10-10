@@ -1,5 +1,4 @@
 <script lang="ts">
-	import moment from 'moment';
 	import {
 		DataTable,
 		DataTableHead,
@@ -9,14 +8,9 @@
 		Icon,
 		Button,
 		Dialog,
-		Card,
-		CardTitle,
-		CardText,
-		CardActions,
 	} from 'svelte-materialify';
 
 	import { mdiFileEdit } from '@mdi/js';
-	import { fetchNui } from '../../utils/fetchNui';
 	import Create from './Create.svelte';
 
 	// Stories will be provided by the content component
@@ -34,7 +28,7 @@
 	let close = () => {
 		active = false;
 
-		updateContext = updateContext ? false : true
+		updateContext = updateContext ? false : true;
 	};
 </script>
 

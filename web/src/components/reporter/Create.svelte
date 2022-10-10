@@ -273,6 +273,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		background: url(assets/background2.jpg);
 	}
 
 	.editor {
