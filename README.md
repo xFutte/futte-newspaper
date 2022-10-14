@@ -72,7 +72,7 @@ export const Config = {
 		['blockquote', 'image'],
 		[{ list: 'ordered' }, { list: 'bullet' }],
 	],
-	// Remember to align this with QBShared.Jobs
+	// Remember to align this with QBShared.Jobs in either shared.lua or jobs.lua (based on what version of qb-core you are using)
 	reporter: [
 		{
 			grade: 0,
