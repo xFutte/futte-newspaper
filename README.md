@@ -38,6 +38,7 @@ if not Player or not OtherPlayer or Player.PlayerData.job.name ~= "police" then 
 ```lua
 ['newspaper'] = {['name'] = 'newspaper', ['label'] = 'Newspaper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'newspaper.png', ['unique'] = false , ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Los Santos Newspaper'},
 ```
+:bulb: Initially there will be a "Welcome.." story. As soon as you add your first story the "Welcome.." story will delete itself.
 
 ## Development
 
