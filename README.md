@@ -64,7 +64,6 @@ export const Config = {
 		showTitle: true,
 		showDate: true,
 		showPublisher: true,
-		titleMaxLength: 60,
 	},
 	// Set this to a custom year for the publish year if needed. Otherwise it will use the current date
 	customYear: undefined,
