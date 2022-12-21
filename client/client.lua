@@ -18,8 +18,22 @@ local function AddItemToNewsStand(storyType, paper, paperIcon, stands)
                     return false
                 end
 
-                TriggerServerEvent('newspaper:buy', storyType)
-                TriggerEvent('animations:client:EmoteCommandStart', {"pickup"})
+                QBCore.Functions.Progressbar("take_paper", "Taking Newspaper..", 10000, false, true, {
+                    disableMovement = true,
+                    disableCarMovement = true,
+                    disableMouse = false,
+                    disableCombat = true,
+                }, {
+                    animDict = "amb@prop_human_bum_bin@base",
+                    anim = "base",
+                    flags = 49,
+                }, {}, {}, function()
+                    ClearPedTasks(PlayerPedId())
+                    TriggerServerEvent('newsstands:buy', storyType)
+                end, function()
+                    ClearPedTasks(PlayerPedId())
+                    QBCore.Functions.Notify("Cancelled..", "error")
+                end, "fa-solid fa-newspaper")
             end
         }},
         distance = 1.5
