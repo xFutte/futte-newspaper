@@ -18,7 +18,7 @@ local function AddItemToNewsStand(storyType, paper, paperIcon, stands)
                     return false
                 end
 
-                QBCore.Functions.Progressbar("take_paper", "Taking Newspaper..", 10000, false, true, {
+                QBCore.Functions.Progressbar("take_paper", "Taking Newspaper..", Config.ProgTime * 1000, false, true, {
                     disableMovement = true,
                     disableCarMovement = true,
                     disableMouse = false,
