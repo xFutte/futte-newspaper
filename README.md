@@ -1,6 +1,6 @@
 # Newspaper script for QBCore
 
-This newspaper resource will add a newspaper functionality to your beautiful QBCore FiveM server. This resource is still in active development.
+This newspaper resource will add a newspaper functionality to your beautiful QBCore FiveM server.
 
 This resource supports:
 
