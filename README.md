@@ -1,5 +1,7 @@
 # Newspaper script for QBCore
 
+[![CodeFactor](https://www.codefactor.io/repository/github/xfutte/futte-newspaper/badge)](https://www.codefactor.io/repository/github/xfutte/futte-newspaper)
+
 This newspaper resource will add a newspaper functionality to your beautiful QBCore FiveM server.
 
 This resource supports:
