@@ -37,10 +37,8 @@ end
 --- @param publisherName string
 --- @return any state
 Database.PublishStory = function(data, publisherName)
-    -- if not data then return end
-    -- if not publisherName then return end
-
-    print(data, publisherName)
+    if not data then return end
+    if not publisherName then return end
 
     return exports.oxmysql:execute(Database.Queries.PUBLISH_STORY, {
         STORY_TYPES.NEWS, 
@@ -53,10 +51,8 @@ end
 --- @param characterName string
 --- @param jailTime number
 Database.CreateJailStory = function(characterName, jailTime)
-    -- if not characterName then return end
-    -- if not jailTime then return end
-
-    print(characterName, jailTime)
+    if not characterName then return end
+    if not jailTime then return end
 
     return exports.oxmysql:execute(Database.Queries.CREATE_JAIL_STORY, {
         STORY_TYPES.JAIL, 
