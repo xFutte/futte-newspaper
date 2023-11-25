@@ -23,3 +23,16 @@ Config.NewsStandsModels = {
     "prop_news_disp_03c", "prop_news_disp_06a", "prop_news_disp_02a", "prop_news_disp_02d",
     "prop_news_disp_02b", "prop_news_disp_01a", "prop_news_disp_03a"
 }
+
+Config.Locales = {
+    Lang = 'en',
+
+    Translations = {
+        ['en'] = {
+            STORY_PUBLISHED = 'Story was published',
+            STORY_UPDATED = 'Story was updated',
+            STORY_DELETED = 'Story was deleted',
+            DEFAULT_PUBLISHER_NAME = 'Los Santos Publisher',
+        },
+    }
+}
