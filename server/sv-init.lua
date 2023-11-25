@@ -4,8 +4,6 @@ STORIES_CACHE = {
 }
 
 CreateThread(function()
-    Wait(1000)
-
     if IsResourceOnServer('rcore_prison') then
         print('futte-newspaper: rcore_prison detected, enabling jail stories.')
 
@@ -19,8 +17,7 @@ CreateThread(function()
                 local prisonerName = prisonerData and prisonerData.name
 
                 if prisonerName and jailTime > 0 then
-                    -- local state = CreateJailStory(prisonerName, jailTime)
-                    -- print(state)
+                    CreateJailStory(prisonerName, jailTime)
                 end
             end
         end)
@@ -28,6 +25,8 @@ CreateThread(function()
 
     STORIES_CACHE.NEWS = Database.FetchNews()
     STORIES_CACHE.SENTENCES = Database.FetchSentences()
+
+    Wait(1000)
 
     SyncStories(-1, STORIES_CACHE)
 end)
