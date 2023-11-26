@@ -1,4 +1,4 @@
-Framework.RegisterUsableItem(Config.Items and Config.Items.NEWSPAPER or 'futte-newspaper', function(source, item)
+Framework.RegisterUsableItem(Config.Items and Config.Items.NEWSPAPER or 'newspaper', function(source, item)
     local playerId = source
     local itemCount = Framework.GetItemCount(playerId, item.name)
 
@@ -7,21 +7,19 @@ Framework.RegisterUsableItem(Config.Items and Config.Items.NEWSPAPER or 'futte-n
     end
 end)
 
-RegisterNetEvent('futte-newspaper:server:requestBuyNewsPaper', function(type)
-    -- local Player = QBCore.Functions.GetPlayer(source)
-    -- local cash = Player.PlayerData.money['cash']
+RegisterNetEvent('futte-newspaper:server:requestBuyNewsPaper', function(paperType)
+    local playerId = source
+    local player = Framework.getPlayer(source)
+    local cash = Framework.GetItemCount(playerId, 'money')
 
-    -- if type then
-    --     if cash >= Config.Price then
-
-    --         Player.Functions.RemoveMoney("cash", Config.Price)
-    --         TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['futte-newspaper'], "add")
-    --         Player.Functions.AddItem(type, 1)
-    --     else
-    --         TriggerClientEvent('QBCore:Notify', source, '$' .. Config.Price .. ' required for buying a futte-newspaper',
-    --             'error')
-    --     end
-    -- end
+    if paperType then
+        if cash >= Config.Price then
+            Framework.RemoveInventoryItem(playerId, 'cash', Config.Price)
+            Framework.AddInventoryItem(playerId, Config.Items.NEWSPAPER, 1)
+        else
+            Framework.showNotify(source, l('NOT_ENOUGH_MONEY'), 'error')
+        end
+    end
 end)
 
 RegisterNetEvent('futte-newspaper:server:updateStory', function(data)
@@ -29,6 +27,11 @@ RegisterNetEvent('futte-newspaper:server:updateStory', function(data)
     local player = Framework.getPlayer(playerId)
 
     if player and data then
+        if not IsReporter(playerId) then
+            Framework.showNotify(playerId, l('NOT_ALLOWED'), 'error')
+            return
+        end
+
         local storyType = data.type and data.type:upper()
 
         if storyType then
@@ -46,6 +49,10 @@ RegisterNetEvent('futte-newspaper:server:updateStory', function(data)
                     body = data.body,
                     date = data.date,
                 }
+
+                table.sort(STORIES_CACHE[storyType], function(a, b)
+                    return a.date > b.date
+                end)
 
                 Database.UpdateStory(data)
 
@@ -66,6 +73,11 @@ RegisterNetEvent('futte-newspaper:server:publishStory', function(data)
     local player = Framework.getPlayer(playerId)
 
     if player and data then
+        if not IsReporter(playerId) then
+            Framework.showNotify(playerId, l('NOT_ALLOWED'), 'error')
+            return
+        end
+
         local storyType = data.type and data.type:upper()
 
         if storyType then
@@ -83,6 +95,10 @@ RegisterNetEvent('futte-newspaper:server:publishStory', function(data)
                     body = data.body,
                     date = data.date,
                 }
+
+                table.sort(STORIES_CACHE[storyType], function(a, b)
+                    return a.date > b.date
+                end)
 
                 Database.PublishStory(data, player.charName)
 
@@ -104,6 +120,11 @@ RegisterNetEvent('futte-newspaper:server:deleteStory', function(data)
     local storyId = data and data.id
 
     if player and storyId then
+        if not IsReporter(playerId) then
+            Framework.showNotify(playerId, l('NOT_ALLOWED'), 'error')
+            return
+        end
+
         if STORIES_CACHE.SENTENCES[storyId] then
             STORIES_CACHE.SENTENCES[storyId] = nil
         end
@@ -143,6 +164,16 @@ end
 
 function SyncStories(target, data)
     TriggerLatentClientEvent('futte-newspaper:client:syncStories', target, 10000, data)
+end
+
+function IsReporter(playerId)
+    local player = Framework.getPlayer(playerId)
+
+    if player then
+        return player.job and player.job.name == Config.Job.name
+    end
+
+    return false
 end
 
 exports('CreateJailStory', CreateJailStory)

@@ -41,6 +41,14 @@ RegisterNetEvent('futte-newspaper:client:openNewspaper', function()
 end)
 
 
+AddEventHandler('onClientResourceStart', function (resourceName)
+    if (GetCurrentResourceName() ~= resourceName) then
+      	return
+    end
+
+	ExitUI()
+end)
+
 
 
 

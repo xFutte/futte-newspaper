@@ -33,6 +33,8 @@ Config.Locales = {
             STORY_UPDATED = 'Story was updated',
             STORY_DELETED = 'Story was deleted',
             DEFAULT_PUBLISHER_NAME = 'Los Santos Publisher',
+            NOT_ALLOWED = 'You are not allowed to do this',
+            NOT_ENOUGH_MONEY = 'You do not have enough money',
         },
     }
 }
