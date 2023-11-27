@@ -5,7 +5,7 @@ STORIES_CACHE = {
 
 CreateThread(function()
     if IsResourceOnServer('rcore_prison') then
-        print('futte-newspaper: rcore_prison detected, enabling jail stories.')
+        print('^3[API] ^0rcore_prison detected, enabling jail stories.')
 
         AddEventHandler('rcore_prison:prisonerState', function(data)
             local state = data and data.state
@@ -15,6 +15,8 @@ CreateThread(function()
             if state == 'jailed' and prisonerData then
                 local jailTime = prisonerData and prisonerData.jailTime or 0
                 local prisonerName = prisonerData and prisonerData.name
+
+                -- TODO: Requires to modify frontend with some variable with prefix jail format (seconds/mins/hours/days) to make proper sense.
 
                 if prisonerName and jailTime > 0 then
                     CreateJailStory(prisonerName, jailTime)
