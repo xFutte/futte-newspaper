@@ -74,7 +74,7 @@ function OpenNewsPaperUI()
             sentences = STORIES_CACHE.SENTENCES and next(STORIES_CACHE.SENTENCES) and STORIES_CACHE.SENTENCES or {},
             isReporter = job and job.name == Config.Job.name,
             reporterLevel = job and job.grade.level or 0,
-            reporterOnDuty = job and job.onduty,
+            reporterOnDuty = job and job.onDuty,
             playerName = playerName or 'UNK-NAME',
         },
     })

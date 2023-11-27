@@ -7,12 +7,19 @@ game 'gta5'
 name 'futte-newspaper'
 version '1.0'
 author 'xFutte'
+contributors {
+    'NewEdit'
+}
+
 description 'News script'
 
 ui_page 'web/public/index.html'
 
 server_scripts {
-    "server/**/*"
+    'server/framework/*.lua',
+    'server/sv-db.lua',
+    'server/sv-main.lua',
+    'server/sv-init.lua',
 }
 
 shared_scripts { 
@@ -23,9 +30,10 @@ shared_scripts {
 }
 
 client_scripts {
-    'client/**/*', 
-    '@PolyZone/client.lua', 
-    '@PolyZone/EntityZone.lua'
+    'client/framework/*.lua',
+    'client/cl-nui.lua',
+    'client/cl-func.lua',
+    'client/cl-main.lua',
 }
 
 files {

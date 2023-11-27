@@ -2,6 +2,16 @@ STORIES_CACHE = {}
 
 NEWSPAPER_OPEN_STATE = false
 
+JobCache = nil
+
+CreateThread(function()
+    repeat
+        Wait(500)
+    until FrameworkObject ~= nil
+
+    Framework.fetchUserJob()
+end)
+
 RegisterNetEvent('futte-newspaper:client:syncStories', function(serverData)
     STORIES_CACHE = serverData
 end)

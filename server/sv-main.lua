@@ -1,10 +1,12 @@
-Framework.RegisterUsableItem(Config.Items and Config.Items.NEWSPAPER or 'newspaper', function(source, item)
-    local playerId = source
-    local itemCount = Framework.GetItemCount(playerId, item.name)
-
-    if itemCount > 0 then
-        TriggerClientEvent('futte-newspaper:client:openNewspaper', playerId)
-    end
+CreateThread(function()
+    Framework.RegisterUsableItem(Config.Items and Config.Items.NEWSPAPER or 'newspaper', function(source, item)
+        local playerId = source
+        local itemCount = Framework.GetItemCount(playerId, item.name)
+    
+        if itemCount > 0 then
+            TriggerClientEvent('futte-newspaper:client:openNewspaper', playerId)
+        end
+    end)
 end)
 
 RegisterNetEvent('futte-newspaper:server:requestBuyNewsPaper', function(paperType)
@@ -175,5 +177,15 @@ function IsReporter(playerId)
 
     return false
 end
+
+-- Framework.RegisterUsableItem(Config.Items and Config.Items.NEWSPAPER or 'newspaper', function(source, item)
+--     local playerId = source
+--     local itemCount = Framework.GetItemCount(playerId, item.name)
+
+--     if itemCount > 0 then
+--         TriggerClientEvent('futte-newspaper:client:openNewspaper', playerId)
+--     end
+-- end)
+
 
 exports('CreateJailStory', CreateJailStory)
