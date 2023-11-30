@@ -23,8 +23,6 @@ CreateThread(function()
                     end
                 end
 
-                -- ?? Revamp to work with our job structure, so we can access all data from one place.
-
                 p:resolve({
                     Functions = tempUser.Functions,
                     charId = playerData.citizenid or 'UNK_CHAR_ID',
