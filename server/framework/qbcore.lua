@@ -1,18 +1,3 @@
--- ?? Structure for framework jobs in general.
-
--- [script:futte-newspap] {
--- [script:futte-newspap]     "job": {
--- [script:futte-newspap]         "name": "police",
--- [script:futte-newspap]         "label": "LSPD",
--- [script:futte-newspap]         "grade_label": "Lieutenant",
--- [script:futte-newspap]         "grade": 3,
--- [script:futte-newspap]         "grade_name": "lieutenant",
--- [script:futte-newspap]         "onDuty": true
--- [script:futte-newspap]     },
--- [script:futte-newspap]     "charName": "Xdddd Adsasdada",
--- [script:futte-newspap]     "charId": "char1:8a5e30da582cda4e9cd8d0a929bd3c852d9d8d23"
--- [script:futte-newspap] }
-
 CreateThread(function()
     if Config.Framework == 'QBCORE' then
         --- @param playerId number
