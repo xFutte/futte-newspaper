@@ -54,22 +54,22 @@ end)
 -- Buy a newspaper
 RegisterNetEvent('newspaper:buy', function(type)
     local Player = QBCore.Functions.GetPlayer(source)
-    local cash = Player.PlayerData.money['cash']
+    local cash = Player.PlayerData.money['bank']
 
     if type then
         if cash >= Config.Price then
             Player.Functions.RemoveMoney("bank", Config.Price)
             if Config.Inventory == 'qb' then
-                TriggerClientEvent('QBCore:Notify', source, 'Tu as acheté un journal pour ' .. Config.Price .. ' $',
+                TriggerClientEvent('QBCore:Notify', source, Lang:t("success.buy") .. Config.Price .." $",
                     'success')
                 TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['newspaper'], "add")
             elseif Config.Inventory == 'ox' then
-                TriggerClientEvent('QBCore:Notify', source, 'Tu as acheté un journal pour ' .. Config.Price .. ' $',
+                TriggerClientEvent('QBCore:Notify', source, Lang:t("success.buy") .. Config.Price .." $",
                     'success')
                 exports.ox_inventory:AddItem(source, type, 1)
             end
         else
-            TriggerClientEvent('QBCore:Notify', source, '$' .. Config.Price .. ' requis pour acheter un journal',
+            TriggerClientEvent('QBCore:Notify', source, '$' .. Config.Price .. Lang:t("error.money"),
                 'error')
         end
     end
@@ -93,10 +93,10 @@ RegisterNetEvent('newspaper:server:updateStory', function(data)
             exports.oxmysql:insert('UPDATE newspaper SET title = ?, body = ?, image = ? WHERE id = ?',
                 {data.title, data.body, data.image, data.id})
 
-            TriggerClientEvent('QBCore:Notify', src, 'Story has been updated!', 'success')
+            TriggerClientEvent('QBCore:Notify', src, Lang:t("success.storyupdated"), 'success')
         end
     else
-        TriggerClientEvent('QBCore:Notify', src, 'You need to be a reporter to update a story', 'success')
+        TriggerClientEvent('QBCore:Notify', src, Lang:t("error.notjobtoupdate"), 'success')
     end
 
     knownPlayers[source] = nil;
@@ -124,10 +124,10 @@ RegisterNetEvent('newspaper:server:publishStory', function(data)
                 'INSERT INTO newspaper (story_type, title, body, date, image, publisher) VALUES (?, ?, ?, ?, ?, ?)',
                 {'news', data.title, data.body, data.date, data.image, playerName})
 
-            TriggerClientEvent('QBCore:Notify', src, 'Story has been published!', 'success')
+            TriggerClientEvent('QBCore:Notify', src, Lang:t("success.storypublished"), 'success')
         end
     else
-        TriggerClientEvent('QBCore:Notify', src, 'You need to be a reporter to publish a story', 'success')
+        TriggerClientEvent('QBCore:Notify', src, Lang:t("error.notjobtopublish"), 'success')
     end
 
     knownPlayers[source] = nil;
@@ -150,10 +150,10 @@ RegisterNetEvent('newspaper:server:deleteStory', function(data)
         else
             exports.oxmysql:execute('DELETE FROM newspaper WHERE id = ?', {data.id})
 
-            TriggerClientEvent('QBCore:Notify', src, 'Story have been deleted', 'success')
+            TriggerClientEvent('QBCore:Notify', src, Lang:t("success.storydeleted"), 'success')
         end
     else
-        TriggerClientEvent('QBCore:Notify', src, 'Not possible to delete story', 'success')
+        TriggerClientEvent('QBCore:Notify', src, Lang:t("error.errordelete"), 'success')
     end
 
     knownPlayers[source] = nil;
