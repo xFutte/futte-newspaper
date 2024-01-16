@@ -39,8 +39,15 @@ QBCore.Functions.CreateUseableItem("newspaper", function(source, item)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
 
-    if Player.Functions.GetItemByName(item.name) ~= nil then
-        TriggerClientEvent('newspaper:client:openNewspaper', src)
+    if Config.Inventory == 'qb' then
+        if Player.Functions.GetItemByName(item.name) ~= nil then
+            TriggerClientEvent('newspaper:client:openNewspaper', src)
+        end
+    elseif Config.Inventory == 'ox' then
+        local count = exports.ox_inventory:Search(src, 'count', item.name)
+        if count > 0 then
+            TriggerClientEvent('newspaper:client:openNewspaper', src)
+        end
     end
 end)
 
@@ -51,12 +58,18 @@ RegisterNetEvent('newspaper:buy', function(type)
 
     if type then
         if cash >= Config.Price then
-
-            Player.Functions.RemoveMoney("cash", Config.Price)
-            TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['newspaper'], "add")
-            Player.Functions.AddItem(type, 1)
+            Player.Functions.RemoveMoney("bank", Config.Price)
+            if Config.Inventory == 'qb' then
+                TriggerClientEvent('QBCore:Notify', source, 'Tu as acheté un journal pour ' .. Config.Price .. ' $',
+                    'success')
+                TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['newspaper'], "add")
+            elseif Config.Inventory == 'ox' then
+                TriggerClientEvent('QBCore:Notify', source, 'Tu as acheté un journal pour ' .. Config.Price .. ' $',
+                    'success')
+                exports.ox_inventory:AddItem(source, type, 1)
+            end
         else
-            TriggerClientEvent('QBCore:Notify', source, '$' .. Config.Price .. ' required for buying a newspaper',
+            TriggerClientEvent('QBCore:Notify', source, '$' .. Config.Price .. ' requis pour acheter un journal',
                 'error')
         end
     end
