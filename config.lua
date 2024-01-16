@@ -5,3 +5,6 @@ Config.BuyNewspaperIcon = 'fas fa-newspaper' -- Icon shown with qb-target
 Config.Price = 100 -- Price of buying the newspaper
 Config.AmountOfNews = 10 -- Amount of news to be fetched from the database
 Config.AmountOfSentences = 10 -- Amount of prison sentences to be fetched from the database
+
+Config.Inventory = "qb" -- ox or qb
+Config.Target = "qb" -- ox or qb-target
