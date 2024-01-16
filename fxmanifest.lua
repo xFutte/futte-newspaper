@@ -7,7 +7,7 @@ ui_page 'web/public/index.html'
 
 author 'xFutte'
 description 'News script'
-version '1.0'
+version '1.3.1'
 
 shared_script 'config.lua'
 
