@@ -12,7 +12,9 @@ version '1.0'
 shared_script 'config.lua'
 
 client_script {'client/**/*', '@PolyZone/client.lua', '@PolyZone/EntityZone.lua'}
-server_script "server/**/*"
+server_script 'server/**/*'
+
+shared_scripts {'@qb-core/shared/locale.lua','locales/en.lua'}
 
 files {'web/public/index.html', 'web/public/**/*'}
 
