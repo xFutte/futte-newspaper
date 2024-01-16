@@ -6,5 +6,5 @@ Config.Price = 100 -- Price of buying the newspaper
 Config.AmountOfNews = 10 -- Amount of news to be fetched from the database
 Config.AmountOfSentences = 10 -- Amount of prison sentences to be fetched from the database
 
-Config.Inventory = "ox" -- ox or qb inventory
-Config.Target = "ox" -- ox or qb-target
+Config.Inventory = "qb" -- ox or qb
+Config.Target = "qb" -- ox or qb-target
