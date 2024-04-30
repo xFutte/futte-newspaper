@@ -35,7 +35,7 @@ after the line
 ```lua
 if not Player or not OtherPlayer or Player.PlayerData.job.name ~= "police" then return end
 ```
-And if you use pickle prison, navigate to `pickle_prisons\modules\prison\server.lua`
+And if you use [Pickle Prison](https://github.com/PickleModifications/pickle_prisons), navigate to `pickle_prisons\modules\prison\server.lua`
 search for 
 ```lua
 function JailPlayer(source, time, index, noSave)
