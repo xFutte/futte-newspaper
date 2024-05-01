@@ -35,7 +35,6 @@ after the line
 ```lua
 if not Player or not OtherPlayer or Player.PlayerData.job.name ~= "police" then return end
 ```
-
 3. Add the newspaper.png image into your qb-inventory folder, where all the other images are located (located in the root of the repo).
 4. Add following to either your shared.lua or items.lua file based on what version of qb-core you have installed:
 ```lua
