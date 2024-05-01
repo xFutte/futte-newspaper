@@ -40,6 +40,9 @@ if not Player or not OtherPlayer or Player.PlayerData.job.name ~= "police" then 
 ```lua
 ['newspaper'] = {['name'] = 'newspaper', ['label'] = 'Newspaper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'newspaper.png', ['unique'] = false , ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Los Santos Newspaper'},
 ```
+---
+
+### Pickle Prison support
 if you use [Pickle Prison](https://github.com/PickleModifications/pickle_prisons), navigate to `pickle_prisons\modules\prison\server.lua`
 search for 
 ```lua
