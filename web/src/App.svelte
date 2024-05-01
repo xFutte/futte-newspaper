@@ -7,6 +7,8 @@
 	import type { INewspaperData } from './interfaces/INewspaperData';
 	import type { ISentence } from './interfaces/ISentence';
 	import type { Story } from './interfaces/story';
+    import { fetchNui } from './utils/fetchNui';
+	import { useNuiEvent } from './utils/useNuiEvent';
 
 	let stories: Array<Story>;
 	let reporterLevel: number;
@@ -14,30 +16,39 @@
 	let isReporter: boolean;
 	let sentences: Array<ISentence>;
 	let playerName: string;
+	
+	useNuiEvent<any>('fetchStories', (data) => {
+		stories = data.stories.length ? data.stories : [];
+		sentences = data.sentences.length ? data.sentences : [];
+	});
 
 	window.addEventListener('message', (event) => {
-		const data: INewspaperData = event.data;
+		const action = event.data && event.data.action || null;
+		const backendData = event.data && event.data.data || null;
+		const data: INewspaperData = backendData;
 
-		isReporter = data.isReporter;
-		reporterLevel = data.reporterLevel;
-		reporterOnDuty = data.reporterOnDuty;
-		playerName = data.playerName;
+		if (action === 'open') {
+			isReporter = data.isReporter;
+			reporterLevel = data.reporterLevel;
+			reporterOnDuty = data.reporterOnDuty;
+			playerName = data.playerName;
 
-		const placeholderStory = {
-			id: 0,
-			title: 'Welcome to futte-newspaper',
-			body: "<p>futte-newspaper is a standalone ressource for FiveM. It has the following dependencies:</p><p><ul><li>qb-target</li><li>oxmysql</li></ul></p><p>I hope you'll enjoy the resource. Feel free to open issues if you find a bug/wish new functionality. This story will automatically delete itself as soon as you write a new one.</p><p>- xFutte</p>",
-			image: 'https://w0.peakpx.com/wallpaper/131/302/HD-wallpaper-grand-theft-auto-5-gta-v-grand-theft-auto-v-open-world-gaming-video-game-game-gta-5.jpg',
-			date: moment().format('MMMM Do YYYY'),
-			type: 'news',
-			publisher: 'xFutte @ Github',
-		};
+			const placeholderStory = {
+				id: 0,
+				title: 'Welcome to futte-newspaper',
+				body: "<p>futte-newspaper is a standalone ressource for FiveM. It has the following dependencies:</p><p><ul><li>qb-target</li><li>oxmysql</li></ul></p><p>I hope you'll enjoy the resource. Feel free to open issues if you find a bug/wish new functionality. This story will automatically delete itself as soon as you write a new one.</p><p>- xFutte</p>",
+				image: 'https://w0.peakpx.com/wallpaper/131/302/HD-wallpaper-grand-theft-auto-5-gta-v-grand-theft-auto-v-open-world-gaming-video-game-game-gta-5.jpg',
+				date: moment().format('MMMM Do YYYY'),
+				type: 'news',
+				publisher: 'xFutte @ Github',
+			};
 
-		stories = data.stories.length ? data.stories : [placeholderStory];
-		sentences = data.sentences.length ? data.sentences : [];
+			stories = data.stories.length ? data.stories : [placeholderStory];
+			sentences = data.sentences.length ? data.sentences : [];
 
-		// Show the newspaper GUI
-		visibility.set(true);
+			// Show the newspaper GUI
+			visibility.set(true);
+		}
 	});
 </script>
 
