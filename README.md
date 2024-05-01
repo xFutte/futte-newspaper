@@ -40,6 +40,43 @@ if not Player or not OtherPlayer or Player.PlayerData.job.name ~= "police" then 
 ```lua
 ['newspaper'] = {['name'] = 'newspaper', ['label'] = 'Newspaper', ['weight'] = 10, ['type'] = 'item', ['image'] = 'newspaper.png', ['unique'] = false , ['useable'] = true, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Los Santos Newspaper'},
 ```
+if you use [Pickle Prison](https://github.com/PickleModifications/pickle_prisons), navigate to `pickle_prisons\modules\prison\server.lua`
+search for 
+```lua
+function JailPlayer(source, time, index, noSave)
+```
+and replace that whole function with this one
+```lua
+function JailPlayer(source, time, index, noSave)
+    local Player = QBCore.Functions.GetPlayer(source)
+    local name = Player.PlayerData.charinfo.firstname.." "..Player.PlayerData.charinfo.lastname
+    if Prisoners[source] then return end
+    local index = index or "default"
+    local prison = Config.Prisons[index]
+    if not time or not prison then return end
+    local identifier = GetIdentifier(source)
+    Prisoners[source] = {
+        identifier = identifier,
+        index = index,
+        time = time,
+        inventory = TakeInventory(source),
+        sentence_date = os.time(),
+    }
+    SetPlayerMetadata(source, "injail", time)
+    exports['futte-newspaper']:CreateJailStory(name, time)
+    TriggerClientEvent("pickle_prisons:jailPlayer", source, Prisoners[source])
+    if noSave then return end
+    MySQL.Async.execute("DELETE FROM pickle_prisons WHERE identifier=@identifier;", {["@identifier"] = identifier})
+    MySQL.Async.execute("INSERT INTO pickle_prisons (identifier, prison, time, inventory, sentence_date) VALUES (@identifier, @prison, @time, @inventory, @sentence_date);", {
+        ["@identifier"] = Prisoners[source].identifier,
+        ["@prison"] = Prisoners[source].index,
+        ["@time"] = Prisoners[source].time,
+        ["@inventory"] = json.encode(Prisoners[source].inventory),
+        ["@sentence_date"] = Prisoners[source].sentence_date,
+    })
+end
+```
+
 :bulb: Initially there will be a "Welcome.." story. As soon as you add your first story the "Welcome.." story will delete itself.
 
 ## Development
