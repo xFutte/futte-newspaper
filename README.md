@@ -1,4 +1,5 @@
 # Newspaper script for QBCore
+Note that this is no longer maintained and will not receive any updates/fixes.
 
 [![CodeFactor](https://www.codefactor.io/repository/github/xfutte/futte-newspaper/badge)](https://www.codefactor.io/repository/github/xfutte/futte-newspaper)
 
