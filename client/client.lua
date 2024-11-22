@@ -8,22 +8,39 @@ local newsstands = {"prop_news_disp_02a_s", "prop_news_disp_02c", "prop_news_dis
 local newspaper = CreateObject(GetHashKey("prop_cliff_paper"), 0, 0, 0, true, true, true)
 
 local function AddItemToNewsStand(storyType, paper, paperIcon, stands)
-    exports['qb-target']:AddTargetModel(stands, {
-        options = {{
-            label = paper,
-            icon = paperIcon,
-            action = function(entity)
+    if Config.Target == 'qb-target' then
+        exports['qb-target']:AddTargetModel(stands, {
+            options = { {
+                label = paper,
+                icon = paperIcon,
+                action = function(entity)
+                    if IsPedAPlayer(entity) then
+                        return false
+                    end
 
-                if IsPedAPlayer(entity) then
-                    return false
+                    TriggerServerEvent('newspaper:buy', storyType)
+                    TriggerEvent('animations:client:EmoteCommandStart', { "pickup" })
                 end
+            } },
+            distance = 1.5
+        })
+    
+    elseif Config.Target == 'ox' then
+        local options = {
+            {
+                label = paper,
+                icon = paperIcon,
+                onSelect = function()
 
-                TriggerServerEvent('newspaper:buy', storyType)
-                TriggerEvent('animations:client:EmoteCommandStart', {"pickup"})
-            end
-        }},
-        distance = 1.5
-    })
+                    TriggerServerEvent('newspaper:buy', storyType)
+                    TriggerEvent('animations:client:EmoteCommandStart', { "pickup" })
+                end
+            }
+        }
+        for _, model in ipairs(newsstands) do
+            exports.ox_target:addModel(model, options)
+        end
+    end
 end
 
 AddItemToNewsStand('newspaper', Config.BuyNewspaperText, Config.BuyNewspaperIcon, newsstands)
